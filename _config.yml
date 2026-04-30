@@ -29,7 +29,6 @@ defaults:
 
 # Exclude from site build
 exclude:
-  - admin/
   - README.md
   - README_V7.md
   - DEPLOY.md

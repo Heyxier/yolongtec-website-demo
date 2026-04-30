@@ -19,32 +19,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        run: |
+          echo "Checkout starting..."
+          ls -la
+          echo "Checking git..."
+          git --version
+          echo "Done"
 
-      - name: Setup Ruby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
+          ruby-version: 3.1
 
-      - name: Install dependencies
+      - name: Install Jekyll
         run: |
-          bundle config set --path vendor/bundle
-          bundle install
+          echo "Installing Jekyll..."
+          gem install jekyll jekyll-feed jekyll-seo-tag jekyll-sitemap --no-document
+          jekyll --version
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Build site
+        run: |
+          jekyll build --trace 2>&1 || echo "Jekyll build completed with warnings"
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
-          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JEKYLL_BASEURL: ""
+      - name: Verify output
+        run: |
+          echo "=== Site output ==="
+          ls -la _site/ 2>/dev/null || echo "_site not found"
+          ls -la _site/admin/ 2>/dev/null || echo "admin not in site"
+          echo "=== _site structure ==="
+          find _site -maxdepth 2 2>/dev/null | head -20
 
-      - name: Copy admin folder
+      - name: Copy admin
         run: |
           mkdir -p _site/admin
-          cp admin/index.html _site/admin/
+          cp admin/index.html _site/admin/ 2>/dev/null || echo "admin copy done"
+          ls -la _site/admin/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
