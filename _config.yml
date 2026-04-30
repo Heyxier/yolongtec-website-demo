@@ -1,0 +1,64 @@
+# Jekyll configuration for Yolongtec V7.2
+
+title: Yolong Power Tools
+description: Professional Power Tools Manufacturer
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+timezone: Asia/Shanghai
+
+# Collections - Decap CMS writes to content/
+collections:
+  products:
+    output: true
+    permalink: /products/:path/
+  articles:
+    output: true
+    permalink: /news/:path/
+
+defaults:
+  - scope:
+      path: "content/products"
+    values:
+      layout: product
+  - scope:
+      path: "content/articles"
+    values:
+      layout: article
+
+# Exclude from site build
+exclude:
+  - admin/
+  - README.md
+  - README_V7.md
+  - DEPLOY.md
+  - TODO.md
+  - SPEC.md
+  - CHANGELOG.md
+
+# Keep static files
+keep_files:
+  - images
+  - products
+  - solutions
+  - about
+  - contact
+  - innovation
+  - support
+  - logo-green.svg
+  - logo-white.svg
+  - logo-green.png
+  - logo-white.png
+  - styles.css
+  - script.js
+  - products-dropdown.css
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Build destination
+destination: ./_site

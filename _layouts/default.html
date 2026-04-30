@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - Yolong Power Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ site.baseurl }}/styles.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/products-dropdown.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{{ site.baseurl }}/index.html" class="logo">
+                <img src="{{ site.baseurl }}/logo-white.png" alt="Yolong">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ site.baseurl }}/index.html" class="nav-link">HOME</a></li>
+                <li class="nav-dropdown">
+                    <a href="{{ site.baseurl }}/products/index.html" class="nav-link">PRODUCTS</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ site.baseurl }}/products/drill/">DRILL</a></li>
+                        <li><a href="{{ site.baseurl }}/products/fastening/">FASTENING</a></li>
+                        <li><a href="{{ site.baseurl }}/products/grinder-cutter/">GRINDER & CUTTER</a></li>
+                        <li><a href="{{ site.baseurl }}/products/hammer/">HAMMER</a></li>
+                        <li><a href="{{ site.baseurl }}/products/saw/">SAW</a></li>
+                        <li><a href="{{ site.baseurl }}/products/sander-polisher/">SANDER & POLISHER</a></li>
+                        <li><a href="{{ site.baseurl }}/products/cleanning/">CLEANNING</a></li>
+                        <li><a href="{{ site.baseurl }}/products/lighting/">LIGHTING</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ site.baseurl }}/solutions/index.html" class="nav-link">SOLUTIONS</a></li>
+                <li><a href="{{ site.baseurl }}/innovation/index.html" class="nav-link">INNOVATION</a></li>
+                <li><a href="{{ site.baseurl }}/support/index.html" class="nav-link">SUPPORT</a></li>
+                <li><a href="{{ site.baseurl }}/contact/index.html" class="nav-link">CONTACT</a></li>
+                <li><a href="{{ site.baseurl }}/about/index.html" class="nav-link">ABOUT US</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="{{ site.baseurl }}/contact/index.html" class="btn btn-accent">GET QUOTE</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    {{ content }}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="{{ site.baseurl }}/logo-white.svg" alt="Yolong" class="footer-logo">
+                    <p>Professional Power Tools Manufacturer</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Products</h4>
+                        <a href="{{ site.baseurl }}/products/drill/">Drill</a>
+                        <a href="{{ site.baseurl }}/products/grinder-cutter/">Grinder</a>
+                        <a href="{{ site.baseurl }}/products/saw/">Saw</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="{{ site.baseurl }}/about/">About</a>
+                        <a href="{{ site.baseurl }}/contact/">Contact</a>
+                        <a href="{{ site.baseurl }}/support/">Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Yolong Power Tools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ site.baseurl }}/script.js"></script>
+</body>
+</html>
