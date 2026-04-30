@@ -59,6 +59,3 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-
-# Build destination
-destination: ./_site
