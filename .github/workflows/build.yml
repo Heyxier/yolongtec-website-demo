@@ -3,70 +3,39 @@ name: Build and Deploy Yolongtec to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        run: |
-          echo "Checkout starting..."
-          ls -la
-          echo "Checking git..."
-          git --version
-          echo "Done"
+      - uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: '3.1'
 
-      - name: Install Jekyll
-        run: |
-          echo "Installing Jekyll..."
-          gem install jekyll jekyll-feed jekyll-seo-tag jekyll-sitemap --no-document
-          jekyll --version
+      - run: gem install jekyll jekyll-feed jekyll-seo-tag jekyll-sitemap --no-document
 
-      - name: Build site
-        run: |
-          jekyll build --trace 2>&1 || echo "Jekyll build completed with warnings"
+      - run: jekyll build
 
-      - name: Verify output
-        run: |
-          echo "=== Site output ==="
-          ls -la _site/ 2>/dev/null || echo "_site not found"
-          ls -la _site/admin/ 2>/dev/null || echo "admin not in site"
-          echo "=== _site structure ==="
-          find _site -maxdepth 2 2>/dev/null | head -20
-
-      - name: Copy admin
-        run: |
+      - run: |
           mkdir -p _site/admin
-          cp admin/index.html _site/admin/ 2>/dev/null || echo "admin copy done"
-          ls -la _site/admin/
+          cp admin/index.html _site/admin/
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v1
         with:
           path: ./_site
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - uses: actions/deploy-pages@v2
