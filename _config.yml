@@ -9,6 +9,7 @@ highlighter: rouge
 timezone: Asia/Shanghai
 
 # Collections - Decap CMS writes to content/
+collections_dir: content
 collections:
   products:
     output: true
