@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 collections:
   products:
     output: true
-    permalink: /products/:path/
+    permalink: /products/:category/:slug/
   articles:
     output: true
     permalink: /news/:path/
