@@ -12,10 +12,10 @@ timezone: Asia/Shanghai
 collections:
   products:
     output: true
-    permalink: /products/:category/:slug/
+    permalink: /products/:name/
   articles:
     output: true
-    permalink: /news/:path/
+    permalink: /news/:name/
 
 defaults:
   - scope:
