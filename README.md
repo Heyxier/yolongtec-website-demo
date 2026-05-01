@@ -1,14 +1,14 @@
-# Yolongtec V7.2 - Decap CMS 企业官网
+# Yolongtec V7.2 企业官网
 
 **版本**: V7.2  
-**CMS**: Decap CMS (Git-based)  
-**基础版本**: V7 (静态网站)
+**技术栈**: Jekyll + GitHub Pages + GitHub Actions  
+**部署地址**: https://heyxier.github.io/yolongtec-website-demo/
 
 ---
 
-## 🎯 项目简介
+## 项目状态
 
-Yolongtec V7.2 在 V7 静态网站基础上集成了 Decap CMS，提供图形化管理后台，支持网页编辑产品、文章、图片，无需接触代码即可完成内容更新。
+⚠️ **注意**: Decap CMS 管理后台（`/admin/`）需要 Netlify 认证代理，在国内环境访问不稳定。因此内容管理采用 **Markdown 文件方式**，操作规范详见 [OPERATIONS.md](./OPERATIONS.md)。
 
 ---
 
@@ -16,94 +16,133 @@ Yolongtec V7.2 在 V7 静态网站基础上集成了 Decap CMS，提供图形化
 
 ```
 yolongtec-v7.2/
-├── _config.yml              # Decap CMS 配置
+├── _config.yml              # Jekyll 配置
+├── Gemfile                  # Ruby 依赖
 ├── admin/
-│   └── index.html           # CMS 管理入口 (/admin/)
+│   ├── index.html           # CMS 入口（静态，暂不可用）
+│   └── config.yml            # CMS 配置（暂不可用）
 ├── content/
-│   ├── products/            # 产品内容 (Markdown)
-│   └── articles/            # 文章内容 (Markdown)
+│   ├── products/            # 产品内容（Markdown 文件）
+│   │   ├── index.html       # 产品列表页
+│   │   ├── zpt-cd-18502.md  # 产品示例
+│   │   └── zpt-hm-22602.md  # 新增产品
+│   └── articles/            # 文章内容（Markdown 文件）
+│       └── 2026-award.md
+├── products/                # 静态产品分类页（V7 遗留）
+│   ├── drill/
+│   ├── fastening/
+│   ├── hammer/
+│   └── ...
+├── _layouts/                # Jekyll 页面模板
+│   ├── default.html         # 页面框架
+│   ├── product.html         # 产品详情布局
+│   └── article.html         # 文章布局
 ├── .github/
 │   └── workflows/
 │       └── build.yml        # GitHub Actions 自动构建
-├── index.html               # 复用 V7 首页
-├── styles.css               # 复用 V7 样式
-├── script.js                # 复用 V7 脚本
-└── README.md                 # 本文件
+├── index.html               # 首页
+├── styles.css               # 全局样式
+├── script.js                # 交互脚本
+├── SPEC.md                  # 项目规格说明
+├── OPERATIONS.md            # 内容运营规范 ⚠️ 必读
+├── CHANGELOG.md             # 版本变更记录
+└── README.md                # 本文件
 ```
 
 ---
 
 ## 🚀 快速开始
 
-### 本地预览 CMS
+### 查看网站
 
-1. 安装 Decap CMS 本地开发服务器：
+https://heyxier.github.io/yolongtec-website-demo/
+
+### 本地预览
+
 ```bash
-npx decap-server
+# 安装 Jekyll（需 Ruby）
+gem install jekyll bundler
+
+# 启动本地服务器
+cd yolongtec-v7.2
+bundle exec jekyll serve --port 8080
+
+# 打开浏览器
+http://localhost:8080
 ```
-
-2. 在项目目录启动：
-```bash
-npx decap-server --port 8080
-```
-
-3. 打开浏览器访问：`http://localhost:8080/admin/`
-
-### 部署到 GitHub Pages
-
-详见 [DEPLOY.md](./DEPLOY.md)
 
 ---
 
-## 📝 内容管理
+## 📝 内容管理（重要）
+
+**内容管理不通过 Admin 后台**，而是通过 **GitHub 网页直接编辑 Markdown 文件**。
+
+详细操作规范 → 请阅读 [OPERATIONS.md](./OPERATIONS.md)
 
 ### 产品管理
 
-1. 访问 `/admin/`
-2. 选择 "产品" 栏目
-3. 可添加/编辑/删除产品
-4. 保存后自动提交到 GitHub 仓库
-5. 自动触发 GitHub Actions 构建
+文件路径: `content/products/*.md`
+
+添加新产品：
+1. 打开 https://github.com/Heyxier/yolongtec-website-demo/tree/main/content/products
+2. 点 `Add file` → `Create new file`
+3. 文件名格式: `zpt-型号.md`
+4. 复制模板并填写（参考 OPERATIONS.md）
+5. Commit → 自动构建 → 2分钟后上线
 
 ### 文章管理
 
-1. 访问 `/admin/`
-2. 选择 "文章" 栏目
-3. 支持富文本 Markdown 编辑
-4. 保存后自动发布
+文件路径: `content/articles/*.md`
+
+流程同上，参考 OPERATIONS.md。
 
 ---
 
-## 🔧 配置说明
+## ⚙️ 技术架构
 
-### 修改 GitHub 仓库
+| 层级 | 技术 | 说明 |
+|------|------|------|
+| 静态生成 | Jekyll 4.3 | 将 Markdown 编译为 HTML |
+| 托管 | GitHub Pages | 免费的静态网站托管 |
+| CI/CD | GitHub Actions | 推送代码后自动构建部署 |
+| 内容存储 | Git 仓库 | Markdown 文件直接存储在 Git 中 |
+| 样式 | CSS3 + Vanilla JS | 无框架依赖 |
 
-编辑 `_config.yml` 中的 `repo` 字段：
-```yaml
-backend:
-  name: github
-  repo: your-username/yolongtec   # 改成你的仓库
-  branch: main
+### 构建流程
+
 ```
-
-### 添加新产品分类
-
-编辑 `_config.yml` 中 `products` 集合的 `category` 字段：
-```yaml
-- {label: "分类", name: "category", widget: "select", 
-  options: ["drill", "fastening", "grinder-cutter", "hammer", "saw", 
-           "sander-polisher", "cleanning", "lighting"]}
+push 代码 → GitHub Actions 触发 → bundle exec jekyll build → 部署到 GitHub Pages
 ```
 
 ---
 
 ## 📚 相关文档
 
-- [SPEC.md](./SPEC.md) - 项目规格说明
-- [TODO.md](./TODO.md) - 待办事项
-- [DEPLOY.md](./DEPLOY.md) - 部署指南
-- [Decap CMS 官方文档](https://decapcms.org/)
+| 文档 | 说明 |
+|------|------|
+| [SPEC.md](./SPEC.md) | 项目设计规格（色彩、字体、布局） |
+| [OPERATIONS.md](./OPERATIONS.md) | **内容管理操作手册**（必读） |
+| [CHANGELOG.md](./CHANGELOG.md) | 版本历史 |
+| [DEPLOY.md](./DEPLOY.md) | 部署详细说明 |
 
 ---
 
-**最后更新**: 2026-04-30
+## ❓ 常见问题
+
+**Q: 为什么不用 Admin 后台？**  
+A: Decap CMS 的 GitHub 认证需要 Netlify 作为 OAuth 代理，国内访问延迟高且不稳定。已改用 Markdown 文件方式管理内容，完全等同效果。
+
+**Q: 如何更新网站内容？**  
+A: 通过 GitHub 网页直接编辑 `content/products/` 或 `content/articles/` 下的 `.md` 文件。详见 [OPERATIONS.md](./OPERATIONS.md)。
+
+**Q: 产品页面路径是什么？**  
+A: Collection 产品页面: `/products/`  
+   静态分类页: `/products/drill/`, `/products/hammer/` 等
+
+**Q: 如何添加新产品图片？**  
+A: 将图片文件上传到 `images/` 目录，然后在 `.md` 文件的 `image` 字段引用（如 `/images/product-01.jpg`）。
+
+---
+
+**最后更新**: 2026-05-02  
+**维护方式**: 通过 GitHub 直接编辑 Markdown 文件
