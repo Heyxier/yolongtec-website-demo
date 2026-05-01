@@ -7,11 +7,12 @@
 ## 一、项目概述
 
 **项目名称**: Yolongtec 企业官网  
-**项目类型**: 静态响应式网站（多页面）  
+**项目类型**: 静态响应式网站 + Git-based CMS  
 **品牌定位**: Yolong Power Tools — 专业电动工具制造商  
 **目标用户**: 专业工程师、建筑工人、经销商  
-**上线日期**: （待定）  
-**当前版本**: V7
+**当前版本**: V7.2  
+**CMS 方案**: Decap CMS (Git-based)  
+**基础版本**: V7 (静态网站，已冻结)
 
 ---
 
@@ -83,6 +84,7 @@
 | 服务支持 | `support/index.html` | 技术支持 |
 | 联系我们 | `contact/index.html` | 联系表单 |
 | 关于我们 | `about/index.html` | 公司介绍 |
+| CMS 管理后台 | `admin/index.html` | Decap CMS 可视化编辑入口 |
 
 ### 导航结构
 
@@ -148,40 +150,42 @@
 
 | 类别 | 技术 | 说明 |
 |------|------|------|
+| 静态站点 | Jekyll | 静态网站生成器 |
+| CMS | Decap CMS | Git-based 可视化内容管理 |
+| 部署 | GitHub Pages | 自动托管 |
+| 构建 | GitHub Actions | CI/CD 自动构建 |
 | HTML | HTML5 | 语义化标签 |
 | CSS | CSS3 | 原生 CSS，无框架 |
 | JS | ES6+ | 原生 JavaScript |
 | 图片格式 | JPG/PNG/SVG | 图片资源 |
-| 字体 | Google Fonts | Helvetica Neue |
+| 字体 | Helvetica Neue | 品牌字体 |
 
-### 文件结构
+### V7.2 新增文件结构
 
 ```
-yolongtec-v7/
-├── index.html              # 首页
-├── styles.css              # 全局样式（1160行）
-├── script.js               # 交互脚本（305行）
-├── products-dropdown.css   # 下拉菜单样式
-├── logo-green.png          # 绿色 Logo
-├── logo-white.png          # 白色 Logo
-├── logo-green.svg          # SVG 版
-├── logo-white.svg          # SVG 版
-├── images/                 # 图片资源（13张）
-├── products/               # 产品相关页面
-│   ├── index.html
-│   ├── drill/index.html
-│   ├── fastening/index.html
-│   ├── grinder-cutter/index.html
-│   ├── hammer/index.html
-│   ├── saw/index.html
-│   ├── sander-polisher/index.html
-│   ├── cleanning/index.html
-│   └── lighting/index.html
-├── solutions/index.html
-├── innovation/index.html
-├── support/index.html
-├── contact/index.html
-└── about/index.html
+yolongtec-v7.2/
+├── _config.yml              # Decap CMS 配置
+├── admin/
+│   └── index.html           # CMS 管理入口 (/admin/)
+├── content/
+│   ├── products/           # 产品内容 (Markdown)
+│   │   └── zpt-cd-18502.md  # 产品示例
+│   └── articles/            # 文章内容 (Markdown)
+│       └── 2026-award.md    # 文章示例
+├── .github/
+│   └── workflows/
+│       └── build.yml        # GitHub Actions 自动构建
+├── _layouts/                # Jekyll 布局模板
+│   ├── default.html
+│   ├── product.html
+│   └── article.html
+├── _includes/               # Jekyll 包含模板
+├── Gemfile                  # Ruby 依赖
+├── index.html               # V7 首页（复用）
+├── styles.css               # V7 样式（复用）
+├── script.js                # V7 脚本（复用）
+├── products-dropdown.css    # V7 下拉菜单样式
+└── ...（V7 其他静态文件）
 ```
 
 ### 响应式断点
@@ -225,7 +229,77 @@ yolongtec-v7/
 
 ---
 
-## 七、待完成事项
+## 七、Decap CMS 内容管理
+
+### 访问方式
+
+- 访问路径: `/admin/`
+- 本地预览: `npx decap-server --port 8080`
+
+### 可管理内容
+
+| 内容类型 | 路径 | 说明 |
+|----------|------|------|
+| 产品 | `content/products/` | Markdown 格式 |
+| 文章 | `content/articles/` | Markdown 格式 |
+
+### 配置说明
+
+编辑 `_config.yml` 中的 `repo` 字段以连接 GitHub 仓库：
+
+```yaml
+backend:
+  name: github
+  repo: your-username/yolongtec   # 改成你的仓库
+  branch: main
+```
+
+---
+
+## 八、部署说明
+
+### GitHub Actions 自动构建
+
+每次推送到 `main` 分支自动触发构建：
+
+1. 安装 Ruby 和 Jekyll 依赖
+2. 执行 `jekyll build`
+3. 将构建产物复制到 `_site/`
+4. 部署到 GitHub Pages
+
+### 本地预览
+
+```bash
+# 预览静态网站
+cd yolongtec-v7.2
+python -m http.server 8080
+
+# 预览 Decap CMS（需先安装）
+npx decap-server --port 8080
+# 访问 http://localhost:8080/admin/
+```
+
+### 生产部署
+
+```bash
+# 打包（排除 .git 目录）
+zip -r yolongtec-v7.2-package.zip yolongtec-v7.2/ -x "*/.git/*"
+```
+
+---
+
+## 九、版本历史
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| V7.2 | 2026-04-30 | 集成 Decap CMS，添加内容管理功能 |
+| V7 | 2026-04-27 | 8大产品分类，导航下拉菜单，冻结版本 |
+| V6 | 2026-04-17 | 多层架构网站，6个二级页面 |
+| V5 | 2026-04-16 | 确认冻结版本 |
+
+---
+
+## 十、待完成事项
 
 ### 内容完善
 
@@ -248,28 +322,6 @@ yolongtec-v7/
 
 ---
 
-## 八、部署说明
-
-### 本地预览
-
-```bash
-cd yolongtec-v7
-python -m http.server 8080
-# 访问 http://localhost:8080
-```
-
-### 生产部署
-
-```bash
-# 打包
-zip -r yolongtec-v7.zip yolongtec-v7/ -x "*/gen_products.sh"
-
-# 部署到 Web 服务器
-# 将解压后的文件上传到 Web 根目录
-```
-
----
-
-**最后更新**: 2026-04-27  
+**最后更新**: 2026-05-01  
 **更新人**: 灰色 (AI Assistant)  
-**版本**: V7
+**版本**: V7.2
