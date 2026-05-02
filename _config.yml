@@ -40,7 +40,6 @@ exclude:
 # Keep static files
 keep_files:
   - images
-  - products
   - solutions
   - about
   - contact
