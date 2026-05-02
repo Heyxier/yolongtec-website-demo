@@ -3,130 +3,50 @@ layout: default
 title: Products
 ---
 
-<style>
-.products-page {
-    padding: 120px 0 80px;
-    min-height: 100vh;
-}
-.products-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-.products-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-.product-card {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.1);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-.product-card:hover {
-    border-color: var(--accent-500);
-    transform: translateY(-4px);
-}
-.product-card-image {
-    height: 200px;
-    overflow: hidden;
-}
-.product-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.product-card-content {
-    padding: 24px;
-}
-.product-card-category {
-    color: var(--accent-500);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-.product-card-title {
-    font-family: var(--font-helvetica);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-.product-card-model {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 16px;
-}
-.product-card-link {
-    font-family: var(--font-helvetica);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--accent-500);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-.product-card-link:hover {
-    gap: 12px;
-}
-.no-products {
-    text-align: center;
-    color: var(--text-muted);
-    padding: 60px 0;
-}
-@media (max-width: 768px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-    .products-grid { grid-template-columns: 1fr; }
-}
-</style>
-
-<section class="products-page">
-    <div class="products-container">
-        <div class="products-header">
+<section class="section products-section" style="padding-top: 120px;">
+    <div class="section-bg">
+        <img src="../images/workshop-bg.jpg" alt="Workshop Background">
+        <div class="section-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="section-header">
             <div class="section-badge">
                 <span class="badge-accent"></span>
                 PRODUCTS
             </div>
-            <h2 class="section-title">OUR PRODUCTS</h2>
+            <h2 class="section-title">OUR PRODUCT RANGE</h2>
+            <p class="section-desc">Professional power tools for every trade - 500+ models across 8 categories</p>
         </div>
 
-        <div class="products-grid">
-            {% for product in site.products %}
-            {% if product.status %}
-            <div class="product-card">
-                <div class="product-card-image">
-                    <img src="{{ product.image }}" alt="{{ product.name }}">
+        <div class="products-categories-grid">
+            {% for item in site.data.categories %}
+            {% assign cat = item[1] %}
+            {% assign cat_slug = item[0] %}
+            {% assign published = false %}
+            {% for p in site.products %}
+                {% if p.category == cat_slug and p.status %}
+                    {% assign published = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            <a href="{{ cat_slug }}/index.html" class="category-card">
+                <div class="category-image">
+                    <img src="{{ cat.image }}" alt="{{ cat.name }}">
+                    <div class="category-overlay">
+                        <span class="category-count">{{ cat.count }} Models</span>
+                    </div>
                 </div>
-                <div class="product-card-content">
-                    <span class="product-card-category">{{ product.category }}</span>
-                    <h3 class="product-card-title">{{ product.name }}</h3>
-                    <p class="product-card-model">Model: {{ product.model }}</p>
-                    <a href="{{ product.url }}" class="product-card-link">
-                        View Details →
-                    </a>
+                <div class="category-info">
+                    <h3 class="category-name">{{ cat.name }}</h3>
+                    <p class="category-desc">{{ cat.desc }}</p>
+                    <span class="category-link">EXPLORE →</span>
                 </div>
-            </div>
-            {% endif %}
+            </a>
             {% endfor %}
         </div>
 
-        {% if site.products.size == 0 %}
-        <div class="no-products">
-            <p>No products available yet. Add products through the CMS admin panel.</p>
+        <div class="section-cta">
+            <a href="../contact/index.html" class="btn btn-accent btn-large">REQUEST A CATALOG</a>
         </div>
-        {% endif %}
     </div>
 </section>

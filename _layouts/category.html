@@ -1,0 +1,48 @@
+---
+layout: default
+title: "{{ category.name }}"
+---
+
+{% assign cat_data = site.data.categories[page.category] %}
+
+<section class="section products-section" style="padding-top: 120px;">
+    <div class="section-bg">
+        <img src="../../images/workshop-bg.jpg" alt="Workshop Background">
+        <div class="section-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge">
+                <span class="badge-accent"></span>
+                PRODUCTS
+            </div>
+            <h2 class="section-title">{{ cat_data.name }}</h2>
+            <p class="section-desc">{{ cat_data.desc }}</p>
+        </div>
+
+        <div class="products-grid">
+            {% for product in site.products %}
+            {% if product.category == page.category and product.status %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy">
+                    <div class="product-overlay">
+                        <a href="{{ product.url }}" class="btn btn-accent">VIEW DETAILS</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-desc">{{ product.model }}</p>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="section-cta">
+            <a href="../index.html" class="btn btn-outline-light btn-large">
+                ← BACK TO PRODUCTS
+            </a>
+        </div>
+    </div>
+</section>
