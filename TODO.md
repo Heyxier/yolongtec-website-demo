@@ -1,89 +1,41 @@
-# Yolongtec V7.2 TODO
+# Yolongtec V7.3 TODO
 
-**版本**: V7.2  
-**CMS 方案**: Decap CMS (Git-based)  
-**基础版本**: V7 (已冻结)
-
----
-
-## 完成情况
-
-### 阶段一：文件准备 ✅
-
-- [x] 创建 `_config.yml` (Decap CMS 配置)
-- [x] 创建 `admin/index.html` (Decap CMS 入口)
-- [x] 创建 `content/` 目录结构
-  - [x] `content/products/` (产品 Markdown 示例)
-  - [x] `content/articles/` (文章 Markdown 示例)
-- [x] 创建 `.github/workflows/build.yml` (GitHub Actions 自动构建配置)
-
-### 阶段二：文档编写 ✅
-
-- [x] 创建 `README.md` (使用说明)
-- [x] 创建 `DEPLOY.md` (部署指南)
-- [x] 更新 `SPEC.md` - 合并到项目根目录
-- [x] 复制 V7 静态文件到项目
-
-### 阶段三：测试验证 ⏳
-
-- [ ] 本地预览 Decap CMS 界面
-- [ ] 测试产品 CRUD 流程
-- [ ] 测试文章 CRUD 流程
-- [ ] 测试图片上传
-- [ ] 验证 GitHub Actions 自动构建
-- [ ] 验证 GitHub Pages 部署
-
-### 阶段四：部署上线 ⏳
-
-- [ ] 创建 GitHub 仓库
-- [ ] 推送代码到仓库
-- [ ] 配置 GitHub Pages
-- [ ] 配置 Decap CMS OAuth 认证
-- [ ] 测试完整内容管理流程
+**版本**: V7.3  
+**核心目标**: 打通 Jekyll 全链路，让 Markdown 产品文件自动呈现在前端页面  
+**版本基础**: V7.2 (Jekyll 集成基础)
 
 ---
 
-## 当前状态
+## 阶段一：结构搭建
 
-| 项目 | 状态 |
-|------|------|
-| SPEC.md | ✅ 已创建，已合并到项目 |
-| TODO.md | ✅ 本文件，已更新 |
-| _config.yml | ✅ 已创建 |
-| admin/index.html | ✅ 已创建 |
-| content/ 示例 | ✅ 已创建 |
-| GitHub Actions | ✅ 已创建 |
-| README.md | ✅ 已创建 |
-| DEPLOY.md | ✅ 已创建 |
-| V7 文件 | ✅ 已复制 |
+- [ ] 新建 `_layouts/category.html` — 分类产品列表模板
+- [ ] 清理 `content/products/index.html` — 从集合目录移除（与 `products/index.html` 路径冲突）
+- [ ] 改造 `products/index.html` — 加上 frontmatter，从 `_data/categories.yml` 动态渲染分类网格
+- [ ] 改造 `products/drill/index.html` — → Jekyll Page，frontmatter + category layout
+- [ ] 改造 `products/fastening/index.html` — 同上
+- [ ] 改造 `products/grinder-cutter/index.html` — 同上
+- [ ] 改造 `products/hammer/index.html` — 同上
+- [ ] 改造 `products/saw/index.html` — 同上
+- [ ] 改造 `products/sander-polisher/index.html` — 同上
+- [ ] 改造 `products/cleanning/index.html` — 同上
+- [ ] 改造 `products/lighting/index.html` — 同上
 
----
+## 阶段二：文档同步
 
-## 项目文件结构
+- [ ] 更新 `SPEC.md` — 版本号 V7.2 → V7.3，补充新结构描述
+- [ ] 更新 `CHANGELOG.md` — 添加 V7.3 变更记录
+- [ ] 更新 `README.md` — 反映 V7.3 架构
+- [ ] 更新 `OPERATIONS.md` — 内容管理流程调整（如有需要）
 
-```
-yolongtec-v7.2/
-├── _config.yml              # Decap CMS 配置
-├── admin/
-│   └── index.html            # CMS 管理入口
-├── content/
-│   ├── products/
-│   │   └── zpt-cd-18502.md   # 产品示例
-│   └── articles/
-│       └── 2026-award.md     # 文章示例
-├── .github/
-│   └── workflows/
-│       └── build.yml         # GitHub Actions
-├── index.html                # V7 首页
-├── styles.css                # V7 样式
-├── script.js                 # V7 脚本
-├── README.md                 # 使用说明
-├── DEPLOY.md                 # 部署指南
-├── SPEC.md                   # 项目规格
-└── ...（V7 其他文件）
-```
+## 阶段三：验证
+
+- [ ] 验证 GitHub Actions 构建通过
+- [ ] 验证 `products/` 分类网格动态渲染
+- [ ] 验证各分类页面产品列表正确
+- [ ] 验证产品详情页可正常访问
+- [ ] 验证导航链接正确
 
 ---
 
-**最后更新**: 2026-04-30  
-**状态**: 阶段一、阶段二已完成，待测试部署
+**最后更新**: 2026-05-02  
+**状态**: 初始化
