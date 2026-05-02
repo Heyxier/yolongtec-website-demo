@@ -112,7 +112,7 @@ title: "{{ model }}"
     <div class="product-container">
         <div class="product-grid">
             <div class="product-gallery">
-                <img src="{{ page.image }}" alt="{{ page.name }}">
+                <img src="{{ page.image | relative_url }}" alt="{{ page.name }}">
             </div>
             <div class="product-info">
                 <span class="product-badge">{{ page.category | upcase }}</span>
@@ -159,7 +159,7 @@ title: "{{ model }}"
                 </ul>
                 {% endif %}
 
-                <a href="../../contact/index.html" class="btn btn-accent" style="margin-top:24px;">GET QUOTE</a>
+                <a href="{{ site.baseurl }}/contact/index.html" class="btn btn-accent" style="margin-top:24px;">GET QUOTE</a>
             </div>
         </div>
     </div>
