@@ -29,81 +29,70 @@ title: "{{ page.title }}"
     font-size: 1rem;
     line-height: 1.6;
 }
-
-/* Grid */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
 }
-
 .product-card {
-    background: var(--charcoal-light);
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
     overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
 }
 .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border-color: rgba(255, 63, 0, 0.35);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+    transform: translateY(-6px);
 }
-
 .product-image {
     position: relative;
-    aspect-ratio: 1;
+    height: 280px;
     overflow: hidden;
-    background: var(--charcoal);
+    background: var(--black);
 }
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .product-card:hover .product-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 .product-overlay {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0, 61, 43, 0.92) 0%, rgba(255, 63, 0, 0.85) 100%);
     display: flex;
-    align-items: flex-end;
-    padding: 16px;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 .product-card:hover .product-overlay {
     opacity: 1;
 }
-.product-overlay .btn {
-    width: 100%;
-    text-align: center;
-}
-
 .product-info {
-    padding: 20px;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
 }
 .product-name {
     font-family: var(--font-helvetica);
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: var(--font-weight-medium);
     color: var(--text-primary);
-    margin-bottom: 4px;
-    text-transform: uppercase;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: 0.5px;
 }
-.product-model {
+.product-desc {
     font-size: 0.85rem;
-    color: var(--accent-500);
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-.product-specs {
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-light);
     color: var(--text-muted);
-    line-height: 1.5;
+    letter-spacing: 0.3px;
 }
 .product-stats {
     display: flex;
@@ -118,8 +107,6 @@ title: "{{ page.title }}"
     color: var(--text-primary);
     font-weight: 600;
 }
-
-/* Empty state */
 .empty-state {
     text-align: center;
     padding: 80px 24px;
@@ -130,70 +117,13 @@ title: "{{ page.title }}"
     margin-bottom: 12px;
     color: var(--text-primary);
 }
-
 @media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-    }
-    .category-title {
-        font-size: 1.8rem;
-    }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .category-title { font-size: 1.8rem; }
 }
 @media (max-width: 480px) {
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
+    .products-grid { grid-template-columns: 1fr; }
 }
 </style>
 
-{% assign cat_products = site.products
-  | where: "category", page.category_slug
-  | where: "status", true
-  | sort: "model" %}
-
-{% assign category_data = site.data.categories[page.category_slug] %}
-
-<section class="category-section">
-    <div class="category-container">
-        <div class="category-header">
-            <h1 class="category-title">{{ category_data.name | default: page.title }}</h1>
-            <p class="category-subtitle">{{ category_data.desc | default: page.description }}</p>
-        </div>
-
-        {% if cat_products.size > 0 %}
-        <div class="products-grid">
-            {% for product in cat_products %}
-            <a href="{{ product.url | relative_url }}" class="product-card">
-                <div class="product-image">
-                    <img src="{{ product.image | relative_url }}" alt="{{ product.name }}" loading="lazy">
-                    <div class="product-overlay">
-                        <span class="btn btn-accent" style="pointer-events:none;">VIEW DETAILS</span>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">{{ product.name }}</h3>
-                    <p class="product-model">{{ product.model }}</p>
-                    <div class="product-stats">
-                        {% if product.voltage %}
-                        <span class="product-stat"><strong>{{ product.voltage }}</strong></span>
-                        {% endif %}
-                        {% if product.torque %}
-                        <span class="product-stat"><strong>{{ product.torque }}</strong></span>
-                        {% endif %}
-                        {% if product.motorType == "brushless" %}
-                        <span class="product-stat"><strong>Brushless</strong></span>
-                        {% endif %}
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="empty-state">
-            <h3>Products Coming Soon</h3>
-            <p>Products in this category are being added. Check back later.</p>
-        </div>
-        {% endif %}
-    </div>
-</section>
+{{ content }}
