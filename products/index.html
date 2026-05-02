@@ -1,3 +1,6 @@
+---
+title: Products
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,14 +34,14 @@
                 <li class="nav-dropdown">
                     <a href="index.html" class="nav-link active">PRODUCTS</a>
                     <ul class="dropdown-menu">
-                        <li><a href="drill/index.html">DRILL</a></li>
-                        <li><a href="fastening/index.html">FASTENING</a></li>
-                        <li><a href="grinder-cutter/index.html">GRINDER &amp; CUTTER</a></li>
-                        <li><a href="hammer/index.html">HAMMER</a></li>
-                        <li><a href="saw/index.html">SAW</a></li>
-                        <li><a href="sander-polisher/index.html">SANDER &amp; POLISHER</a></li>
-                        <li><a href="cleanning/index.html">CLEANNING</a></li>
-                        <li><a href="lighting/index.html">LIGHTING</a></li>
+                        <li><a href="drill/">DRILL</a></li>
+                        <li><a href="fastening/">FASTENING</a></li>
+                        <li><a href="grinder-cutter/">GRINDER &amp; CUTTER</a></li>
+                        <li><a href="hammer/">HAMMER</a></li>
+                        <li><a href="saw/">SAW</a></li>
+                        <li><a href="sander-polisher/">SANDER &amp; POLISHER</a></li>
+                        <li><a href="cleanning/">CLEANNING</a></li>
+                        <li><a href="lighting/">LIGHTING</a></li>
                     </ul>
                 </li>
                 <li><a href="../solutions/index.html" class="nav-link">SOLUTIONS</a></li>
@@ -78,129 +81,27 @@
                     PRODUCTS
                 </div>
                 <h2 class="section-title">OUR PRODUCT RANGE</h2>
-                <p class="section-desc">Professional power tools for every trade - 500+ models across 8 categories</p>
+                <p class="section-desc">Professional power tools for every trade — 500+ models across 8 categories</p>
             </div>
 
             <div class="products-categories-grid">
-                <!-- Drill Category -->
-                <a href="drill/index.html" class="category-card">
+                {% assign cat_order = "drill,fastening,grinder-cutter,hammer,saw,sander-polisher,cleanning,lighting" | split: "," %}
+                {% for slug in cat_order %}
+                {% assign cat = site.data.categories[slug] %}
+                <a href="{{ slug }}/" class="category-card">
                     <div class="category-image">
-                        <img src="../images/cordless-drills.jpg" alt="Drill">
+                        <img src="../{{ cat.image | remove_first: '/' }}" alt="{{ cat.name }}">
                         <div class="category-overlay">
-                            <span class="category-count">14 Models</span>
+                            <span class="category-count">{{ cat.count }} Models</span>
                         </div>
                     </div>
                     <div class="category-info">
-                        <h3 class="category-name">DRILL</h3>
-                        <p class="category-desc">12V & 18V cordless drills, impact drivers, and hammer drills</p>
+                        <h3 class="category-name">{{ cat.name }}</h3>
+                        <p class="category-desc">{{ cat.desc }}</p>
                         <span class="category-link">EXPLORE →</span>
                     </div>
                 </a>
-
-                <!-- Fastening Category -->
-                <a href="fastening/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/impact-drivers.jpg" alt="Fastening">
-                        <div class="category-overlay">
-                            <span class="category-count">8 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">FASTENING</h3>
-                        <p class="category-desc">Impact wrenches, ratchets, and screwdrivers</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Grinder & Cutter Category -->
-                <a href="grinder-cutter/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/angle-grinders.jpg" alt="Grinder & Cutter">
-                        <div class="category-overlay">
-                            <span class="category-count">12 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">GRINDER &amp; CUTTER</h3>
-                        <p class="category-desc">Angle grinders, cut-off tools, and rotary tools</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Hammer Category -->
-                <a href="hammer/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/construction-worker.jpg" alt="Hammer">
-                        <div class="category-overlay">
-                            <span class="category-count">6 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">HAMMER</h3>
-                        <p class="category-desc">Rotary hammers, demolition hammers, and chipping hammers</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Saw Category -->
-                <a href="saw/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/circular-saws.jpg" alt="Saw">
-                        <div class="category-overlay">
-                            <span class="category-count">10 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">SAW</h3>
-                        <p class="category-desc">Circular saws, reciprocating saws, and jigsaws</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Sander & Polisher Category -->
-                <a href="sander-polisher/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/battery-tech.jpg" alt="Sander & Polisher">
-                        <div class="category-overlay">
-                            <span class="category-count">8 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">SANDER &amp; POLISHER</h3>
-                        <p class="category-desc">Orbital sanders, polishers, and multi-tools</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Cleanning Category -->
-                <a href="cleanning/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/service-center.jpg" alt="Cleanning">
-                        <div class="category-overlay">
-                            <span class="category-count">5 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">CLEANNING</h3>
-                        <p class="category-desc">Blowers, vacuums, and pressure washers</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
-
-                <!-- Lighting Category -->
-                <a href="lighting/index.html" class="category-card">
-                    <div class="category-image">
-                        <img src="../images/smart-control.jpg" alt="Lighting">
-                        <div class="category-overlay">
-                            <span class="category-count">6 Models</span>
-                        </div>
-                    </div>
-                    <div class="category-info">
-                        <h3 class="category-name">LIGHTING</h3>
-                        <p class="category-desc">Work lights, flashlights, and site lights</p>
-                        <span class="category-link">EXPLORE →</span>
-                    </div>
-                </a>
+                {% endfor %}
             </div>
 
             <div class="section-cta">
@@ -238,14 +139,14 @@
                     <div class="footer-column">
                         <h4>PRODUCTS</h4>
                         <ul>
-                            <li><a href="drill/index.html">Drill</a></li>
-                            <li><a href="fastening/index.html">Fastening</a></li>
-                            <li><a href="grinder-cutter/index.html">Grinder &amp; Cutter</a></li>
-                            <li><a href="hammer/index.html">Hammer</a></li>
-                            <li><a href="saw/index.html">Saw</a></li>
-                            <li><a href="sander-polisher/index.html">Sander &amp; Polisher</a></li>
-                            <li><a href="cleanning/index.html">Cleanning</a></li>
-                            <li><a href="lighting/index.html">Lighting</a></li>
+                            <li><a href="drill/">Drill</a></li>
+                            <li><a href="fastening/">Fastening</a></li>
+                            <li><a href="grinder-cutter/">Grinder &amp; Cutter</a></li>
+                            <li><a href="hammer/">Hammer</a></li>
+                            <li><a href="saw/">Saw</a></li>
+                            <li><a href="sander-polisher/">Sander &amp; Polisher</a></li>
+                            <li><a href="cleanning/">Cleanning</a></li>
+                            <li><a href="lighting/">Lighting</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -255,7 +156,7 @@
                             <li><a href="#">Warranty Info</a></li>
                             <li><a href="#">Service Centers</a></li>
                             <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="../contact/index.html">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
