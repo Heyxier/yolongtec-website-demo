@@ -1,4 +1,4 @@
-# Jekyll configuration for Yolongtec V7.2
+# Jekyll configuration for Yolongtec V7.3
 
 title: Yolong Power Tools
 description: Professional Power Tools Manufacturer
@@ -8,8 +8,7 @@ markdown: kramdown
 highlighter: rouge
 timezone: Asia/Shanghai
 
-# Collections - Decap CMS writes to content/
-collections_dir: content
+# Collections
 collections:
   products:
     output: true
@@ -20,11 +19,11 @@ collections:
 
 defaults:
   - scope:
-      path: "content/products"
+      path: "_products"
     values:
       layout: product
   - scope:
-      path: "content/articles"
+      path: "_articles"
     values:
       layout: article
 
@@ -36,6 +35,7 @@ exclude:
   - TODO.md
   - SPEC.md
   - CHANGELOG.md
+  - content/
 
 # Keep static files
 keep_files:
@@ -45,6 +45,15 @@ keep_files:
   - contact
   - innovation
   - support
+  - product-drill.md
+  - product-fastening.md
+  - product-grinder-cutter.md
+  - product-hammer.md
+  - product-saw.md
+  - product-sander-polisher.md
+  - product-cleanning.md
+  - product-lighting.md
+  - products-index.md
   - logo-green.svg
   - logo-white.svg
   - logo-green.png
