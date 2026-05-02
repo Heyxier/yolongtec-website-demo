@@ -16,11 +16,28 @@
     --accent-600: #cc2a00;
     --accent-500: #ff3f00;
     --accent-400: #ff5c26;
+    --accent-300: #ff7a4a;
+    --accent-100: #ffd6c4;
     
     /* Neutrals */
     --black: #0a0a0a;
     --charcoal: #1a1a1a;
     --dark-gray: #2d2d2d;
+    --surface: #161614;
+    --surface-raised: #1f1f1d;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.12);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 4px 20px rgba(255, 63, 0, 0.2);
+    
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
     
     /* Text Colors - All White Based */
     --text-primary: #ffffff;
@@ -93,15 +110,17 @@ body {
     font-size: 0.85rem;
     font-weight: var(--font-weight-bold);
     text-decoration: none;
-    padding: 14px 42px;
-    border-radius: 2px;
+    padding: 14px 36px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-fast);
-    border: 2px solid transparent;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     white-space: nowrap;
     line-height: 1.2;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn svg {
@@ -111,15 +130,16 @@ body {
 }
 
 .btn-accent {
-    background: var(--accent-500);
+    background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
     color: var(--text-primary);
-    border-color: var(--accent-500);
+    border-color: transparent;
 }
 
 .btn-accent:hover {
-    background: var(--accent-600);
-    border-color: var(--accent-600);
+    background: linear-gradient(135deg, var(--accent-400), var(--accent-500));
+    border-color: transparent;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
 }
 
 .btn-outline-light {
@@ -153,7 +173,7 @@ body {
     z-index: 1000;
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--primary-700);
+    border-bottom: 1px solid rgba(0, 104, 71, 0.4);
 }
 
 .nav-container {
@@ -521,6 +541,10 @@ body {
     min-height: 80vh;
 }
 
+.section:nth-child(even) {
+    background: var(--surface);
+}
+
 .section-bg {
     position: absolute;
     top: 0;
@@ -534,6 +558,21 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 82, 57, 0.9) 0%,
+        rgba(10, 10, 10, 0.7) 100%
+    );
+    z-index: 1;
+}
 }
 
 .section-overlay {
@@ -594,32 +633,36 @@ body {
 }
 
 .product-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
 }
 
 .product-card:hover {
-    border-color: var(--accent-500);
-    transform: translateY(-8px);
+    border-color: rgba(255, 63, 0, 0.35);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+    transform: translateY(-6px);
 }
 
 .product-image {
     position: relative;
     height: 280px;
     overflow: hidden;
+    background: var(--black);
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .product-overlay {
@@ -628,12 +671,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 104, 71, 0.9);
+    background: linear-gradient(135deg, rgba(0, 61, 43, 0.92) 0%, rgba(255, 63, 0, 0.85) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.3s ease;
 }
 
 .product-card:hover .product-overlay {
@@ -641,23 +684,23 @@ body {
 }
 
 .product-info {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
 }
 
 .product-name {
     font-family: var(--font-helvetica);
-    font-size: 1.1rem;
-    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
     color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: 0.5px;
 }
 
 .product-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: var(--font-weight-light);
     color: var(--text-muted);
+    letter-spacing: 0.3px;
 }
 
 /* ========================================
@@ -672,17 +715,20 @@ body {
 }
 
 .category-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     display: block;
+    box-shadow: var(--shadow-sm);
 }
 
 .category-card:hover {
-    border-color: var(--accent-500);
-    transform: translateY(-8px);
+    border-color: rgba(255, 63, 0, 0.35);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+    transform: translateY(-6px);
 }
 
 .category-image {
@@ -1348,6 +1394,46 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: var(--primary-600);
+}
+
+/* ========================================
+   Scroll Reveal Animations
+   ======================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ========================================
+   Glass morphism utility
+   ======================================== */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ========================================
+   Fine details - accent divider
+   ======================================== */
+.accent-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+    border-radius: 2px;
+    margin: var(--spacing-md) 0 var(--spacing-lg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
