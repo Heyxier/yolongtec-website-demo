@@ -86,7 +86,7 @@ title: "{{ title }}"
         </header>
         
         {% if page.coverImage %}
-        <img src="{{ page.coverImage }}" alt="{{ page.title }}" class="article-cover">
+        <img src="{{ page.coverImage | relative_url }}" alt="{{ page.title }}" class="article-cover">
         {% endif %}
         
         <div class="article-content">
