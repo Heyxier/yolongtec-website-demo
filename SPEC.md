@@ -10,8 +10,8 @@
 **项目类型**: 静态响应式网站 + Git-based CMS  
 **品牌定位**: Yolong Power Tools — 专业电动工具制造商  
 **目标用户**: 专业工程师、建筑工人、经销商  
-**当前版本**: V7.2  
-**CMS 方案**: Decap CMS (Git-based)  
+**当前版本**: V7.3  
+**CMS 方案**: Markdown 文件 + Jekyll Collection（通过 GitHub 直接编辑）  
 **基础版本**: V7 (静态网站，已冻结)
 
 ---
@@ -160,32 +160,34 @@
 | 图片格式 | JPG/PNG/SVG | 图片资源 |
 | 字体 | Helvetica Neue | 品牌字体 |
 
-### V7.2 新增文件结构
+### V7.3 内容管理架构
 
 ```
-yolongtec-v7.2/
-├── _config.yml              # Decap CMS 配置
-├── admin/
-│   └── index.html           # CMS 管理入口 (/admin/)
-├── content/
-│   ├── products/           # 产品内容 (Markdown)
-│   │   └── zpt-cd-18502.md  # 产品示例
-│   └── articles/            # 文章内容 (Markdown)
-│       └── 2026-award.md    # 文章示例
-├── .github/
-│   └── workflows/
-│       └── build.yml        # GitHub Actions 自动构建
+yolongtec-v7.3/
+├── _config.yml              # Jekyll 配置
+├── _data/
+│   └── categories.yml       # 产品分类配置（增删分类改此文件）
 ├── _layouts/                # Jekyll 布局模板
 │   ├── default.html
-│   ├── product.html
-│   └── article.html
-├── _includes/               # Jekyll 包含模板
-├── Gemfile                  # Ruby 依赖
-├── index.html               # V7 首页（复用）
-├── styles.css               # V7 样式（复用）
-├── script.js                # V7 脚本（复用）
-├── products-dropdown.css    # V7 下拉菜单样式
-└── ...（V7 其他静态文件）
+│   ├── category.html        # 分类产品列表模板
+│   ├── product.html         # 产品详情页模板
+│   └── article.html         # 文章模板
+├── content/
+│   ├── products/            # 产品内容 (Markdown 文件)
+│   │   ├── zpt-cd-18502.md  # 电钻示例
+│   │   └── zpt-hm-22602.md  # 电锤示例
+│   └── articles/            # 文章内容 (Markdown 文件)
+│       └── 2026-award.md    # 文章示例
+├── products/                # 前端分类页（Jekyll Page）
+│   ├── index.html           # 分类网格（动态从 categories.yml 渲染）
+│   ├── drill/index.html     # 电钻产品列表（动态从 collection 筛选）
+│   ├── hammer/index.html    # 电锤产品列表
+│   └── ...                  # 其余 6 个分类
+├── .github/workflows/build.yml
+├── index.html               # 首页
+├── styles.css
+├── script.js
+└── ...（其他静态文件）
 ```
 
 ### 响应式断点
@@ -292,6 +294,7 @@ zip -r yolongtec-v7.2-package.zip yolongtec-v7.2/ -x "*/.git/*"
 
 | 版本 | 日期 | 说明 |
 |------|------|------|
+| V7.3 | 2026-05-02 | 打通 Jekyll 全链路，Markdown 文件自动呈现到前端页面 |
 | V7.2 | 2026-04-30 | 集成 Decap CMS，添加内容管理功能 |
 | V7 | 2026-04-27 | 8大产品分类，导航下拉菜单，冻结版本 |
 | V6 | 2026-04-17 | 多层架构网站，6个二级页面 |
@@ -322,6 +325,6 @@ zip -r yolongtec-v7.2-package.zip yolongtec-v7.2/ -x "*/.git/*"
 
 ---
 
-**最后更新**: 2026-05-01  
+**最后更新**: 2026-05-02  
 **更新人**: 灰色 (AI Assistant)  
-**版本**: V7.2
+**版本**: V7.3
