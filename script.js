@@ -153,7 +153,7 @@ function initTabs() {
  */
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.product-card, .news-card, .stat-item, .solution-card'
+        '.product-card, .news-card, .stat-item, .solution-card, .reveal'
     );
     
     const observer = new IntersectionObserver((entries) => {
@@ -161,15 +161,16 @@ function initScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
+        el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(el);
     });
 }
