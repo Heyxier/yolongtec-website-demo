@@ -4,6 +4,28 @@
 
 ---
 
+
+## [V7.3] - 2026-05-02
+
+### 架构重构
+
+- **打通 Jekyll 内容全链路**: `content/products/` 下的 Markdown 文件自动呈现在前端页面
+- **分类页动态化**: 8 个产品分类页 (`products/drill/` `hammer/` 等) 从 `site.products` 集合动态筛选渲染
+- **分类网格动态化**: `products/index.html` 从 `_data/categories.yml` 动态读取分类，增删分类只需改 YAML
+- **清理冲突文件**: 移除 `content/products/` 下的 8 个分类占位符 `.md` 文件和 `index.html`（与静态页面 URL 冲突）
+
+### 新增
+
+- `_layouts/category.html` — 分类产品列表布局模板（增强版）
+
+### 操作变化
+
+- 新增产品: 只需在 `content/products/` 下添加 `.md` 文件，自动出现在对应分类页
+- 增删分类: 只需修改 `_data/categories.yml`，无需改动 HTML 页面
+- 旧静态产品详情页 (`.html`) 暂保留，待逐步迁移至 Markdown
+
+---
+
 ## [V7] - 2026-04-27
 
 ### 新增
@@ -117,4 +139,5 @@ yolongtec-website-demo/
 ---
 
 **格式说明**: 使用 [Keep a Changelog](https://keepachangelog.com/) 规范  
+**版本历史**: V7 → V7.2 (Decap CMS 尝试) → V7.3 (Jekyll 全链路打通)  
 **类型说明**: Features / Bug Fixes / Refactoring / Documentation / Dependencies
