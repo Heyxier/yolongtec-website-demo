@@ -23,7 +23,7 @@ permalink: /products/
             {% assign slugs = "drill,fastening,grinder-cutter,hammer,saw,sander-polisher,cleanning,lighting" | split: "," %}
             {% for slug in slugs %}
             {% assign cat = site.data.categories[slug] %}
-            <a href="{{ slug | relative_url }}/" class="category-card">
+            <a href="{{ "products/" | append: slug | relative_url }}/" class="category-card">
                 <div class="category-image">
                     <img src="{{ cat.image | relative_url }}" alt="{{ cat.name }}">
                     <div class="category-overlay">

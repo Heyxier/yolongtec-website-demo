@@ -2,6 +2,7 @@
 
 title: Yolong Power Tools
 description: Professional Power Tools Manufacturer
+baseurl: /yolongtec-website-demo
 
 # Build settings
 markdown: kramdown
@@ -45,15 +46,6 @@ keep_files:
   - contact
   - innovation
   - support
-  - product-drill.md
-  - product-fastening.md
-  - product-grinder-cutter.md
-  - product-hammer.md
-  - product-saw.md
-  - product-sander-polisher.md
-  - product-cleanning.md
-  - product-lighting.md
-  - products-index.md
   - logo-green.svg
   - logo-white.svg
   - logo-green.png
