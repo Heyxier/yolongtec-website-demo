@@ -22,12 +22,12 @@ permalink: /products/
         <div class="products-categories-grid">
             {% assign slugs = "drill,fastening,grinder-cutter,hammer,saw,sander-polisher,cleanning,lighting" | split: "," %}
             {% for slug in slugs %}
-            {% assign cat = site.data.categories[slug] %}
+            {% assign cat = site.data.categories[slug] %}{% assign cat_products = site.products | where: "category", slug | where: "status", true %}
             <a href="{{ "products/" | append: slug | relative_url }}/" class="category-card">
                 <div class="category-image">
                     <img src="{{ cat.image | relative_url }}" alt="{{ cat.name }}">
                     <div class="category-overlay">
-                        <span class="category-count">{{ cat.count }} Models</span>
+                        <span class="category-count">{{ cat_products.size }} Models</span>
                     </div>
                 </div>
                 <div class="category-info">

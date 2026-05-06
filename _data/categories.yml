@@ -4,7 +4,6 @@ drill:
   title: "无绳电钻"
   desc: "12V & 18V cordless drills, impact drivers, and hammer drills"
   image: "/images/cordless-drills.jpg"
-  count: 14
   order: 1
 
 fastening:
@@ -13,7 +12,6 @@ fastening:
   title: "紧固工具"
   desc: "Impact wrenches, ratchets, and screwdrivers"
   image: "/images/impact-drivers.jpg"
-  count: 8
   order: 2
 
 grinder-cutter:
@@ -22,7 +20,6 @@ grinder-cutter:
   title: "角磨机/切割机"
   desc: "Angle grinders, cut-off tools, and rotary tools"
   image: "/images/angle-grinders.jpg"
-  count: 12
   order: 3
 
 hammer:
@@ -31,7 +28,6 @@ hammer:
   title: "电锤"
   desc: "Rotary hammers, demolition hammers, and chipping hammers"
   image: "/images/construction-worker.jpg"
-  count: 0
   order: 4
 
 saw:
@@ -40,7 +36,6 @@ saw:
   title: "锯"
   desc: "Circular saws, reciprocating saws, and jigsaws"
   image: "/images/circular-saws.jpg"
-  count: 10
   order: 5
 
 sander-polisher:
@@ -49,7 +44,6 @@ sander-polisher:
   title: "磨砂机/抛光机"
   desc: "Orbital sanders, polishers, and multi-tools"
   image: "/images/battery-tech.jpg"
-  count: 8
   order: 6
 
 cleanning:
@@ -58,7 +52,6 @@ cleanning:
   title: "清洁设备"
   desc: "Blowers, vacuums, and pressure washers"
   image: "/images/service-center.jpg"
-  count: 5
   order: 7
 
 lighting:
@@ -67,5 +60,4 @@ lighting:
   title: "照明设备"
   desc: "Work lights, flashlights, and site lights"
   image: "/images/smart-control.jpg"
-  count: 6
   order: 8
