@@ -4,7 +4,7 @@ drill:
   title: "无绳电钻"
   desc: "12V & 18V cordless drills, impact drivers, and hammer drills"
   image: "/images/cordless-drills.jpg"
-  count: 15
+  count: 14
   order: 1
 
 fastening:
@@ -31,7 +31,7 @@ hammer:
   title: "电锤"
   desc: "Rotary hammers, demolition hammers, and chipping hammers"
   image: "/images/construction-worker.jpg"
-  count: 6
+  count: 0
   order: 4
 
 saw:
