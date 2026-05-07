@@ -362,41 +362,7 @@ function displaySearchResults(results, container) {
     container.classList.add('active');
 }
 
-// 添加移动端菜单 CSS
-const mobileMenuStyles = document.createElement('style');
-mobileMenuStyles.textContent = `
-    @media (max-width: 768px) {
-        #navMenu.active {
-            display: flex !important;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            padding: var(--spacing-lg);
-            box-shadow: var(--shadow-md);
-            animation: slideDown 0.3s ease;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        #navMenu.active .nav-link {
-            padding: var(--spacing-md) 0;
-            border-bottom: 1px solid var(--light);
-        }
-    }
-`;
-document.head.appendChild(mobileMenuStyles);
+// 移动端菜单 CSS - handled by styles.css
 
 // 页面加载完成后的淡入效果 - 已移除 body opacity hack 防止闪白
 
