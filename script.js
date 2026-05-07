@@ -223,13 +223,13 @@ function initMobileMenu() {
     if (navDropdown) {
         const dropdownLink = navDropdown.querySelector('.nav-link');
         
-        // 移动端：用 touchstart 提前截获，防止浏览器先走导航
-        dropdownLink.addEventListener('touchstart', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-            }
-        }, { passive: false });
+        // 移动端：把 PRODUCTS 链接变成纯触发按钮，不再有导航行为
+        if (window.innerWidth <= 768) {
+            dropdownLink.setAttribute('data-href', dropdownLink.getAttribute('href'));
+            dropdownLink.setAttribute('href', 'javascript:void(0)');
+        }
         
+        // 移动端：点击 PRODUCTS 展开/收起子菜单
         dropdownLink.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
@@ -242,12 +242,16 @@ function initMobileMenu() {
         navDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                // 记住目标地址，等菜单收起后导航
+                const href = link.getAttribute('href');
                 navMenu.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
                 const spans = mobileMenuBtn.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
+                // 延迟导航，让 CSS 动画有时间播放
+                setTimeout(() => { window.location.href = href; }, 200);
             });
         });
     }
