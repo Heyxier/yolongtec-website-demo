@@ -398,15 +398,7 @@ mobileMenuStyles.textContent = `
 `;
 document.head.appendChild(mobileMenuStyles);
 
-// 页面加载完成后的淡入效果
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
+// 页面加载完成后的淡入效果 - 已移除 body opacity hack 防止闪白
 
 // 导出函数供外部使用
 window.Yolong = {
