@@ -205,6 +205,7 @@ function initMobileMenu() {
         link.addEventListener('click', (e) => {
             // 不要关闭移动菜单 - PRODUCTS 需要展开子菜单
             if (window.innerWidth <= 768 && link.closest('.nav-dropdown')) {
+                e.preventDefault();
                 return;
             }
             navMenu.classList.remove('active');
@@ -221,6 +222,14 @@ function initMobileMenu() {
     const navDropdown = navMenu.querySelector('.nav-dropdown');
     if (navDropdown) {
         const dropdownLink = navDropdown.querySelector('.nav-link');
+        
+        // 移动端：用 touchstart 提前截获，防止浏览器先走导航
+        dropdownLink.addEventListener('touchstart', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
         dropdownLink.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
@@ -231,7 +240,8 @@ function initMobileMenu() {
         
         // 次级菜单项点击 -> 关闭整个移动菜单
         navDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
                 navMenu.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
                 const spans = mobileMenuBtn.querySelectorAll('span');

@@ -168,4 +168,13 @@
     .nav-dropdown.open > .nav-link {
         color: var(--accent-500, #FF3F00) !important;
     }
+
+    /* 防止移动端 hover/focus 干扰下拉菜单 */
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
 }
