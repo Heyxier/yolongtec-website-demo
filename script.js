@@ -200,9 +200,13 @@ function initMobileMenu() {
         }
     });
     
-    // 点击菜单项关闭菜单
+    // 点击菜单项关闭菜单（跳过 PRODUCTS 下拉触发链接）
     navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            // 不要关闭移动菜单 - PRODUCTS 需要展开子菜单
+            if (window.innerWidth <= 768 && link.closest('.nav-dropdown')) {
+                return;
+            }
             navMenu.classList.remove('active');
             mobileMenuBtn.classList.remove('active');
             
@@ -220,8 +224,21 @@ function initMobileMenu() {
         dropdownLink.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 e.preventDefault();
+                e.stopPropagation();
                 navDropdown.classList.toggle('open');
             }
+        });
+        
+        // 次级菜单项点击 -> 关闭整个移动菜单
+        navDropdown.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
         });
     }
 }
