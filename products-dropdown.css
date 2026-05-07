@@ -110,6 +110,7 @@
         border-left: 3px solid var(--accent-500, #FF3F00);
         box-shadow: none;
         min-width: auto;
+        width: 100%;
         padding: 6px 0 6px 12px;
         margin: 4px 0 12px 4px;
         border-radius: 0 6px 6px 0;
@@ -149,6 +150,8 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         text-transform: uppercase;
         text-decoration: none;
+        white-space: normal;
+        word-break: break-word;
     }
 
     .dropdown-menu li:last-child a {

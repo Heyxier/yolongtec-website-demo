@@ -1479,6 +1479,7 @@ body {
         animation: slideDown 0.3s ease;
         max-height: 80vh;
         overflow-y: auto;
+        overflow-x: hidden;
     }
     
     #navMenu.active .nav-link {
