@@ -278,7 +278,7 @@ function initFormSubmit() {
             btn.disabled = true;
             
             try {
-                const response = await fetch('http://47.100.81.126:8123/api/contact/yolongtec', {
+                const response = await fetch('https://api.yolongtec.com/api/contact/yolongtec', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
