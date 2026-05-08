@@ -93,8 +93,9 @@
 
 /* Mobile dropdown handling */
 @media (max-width: 768px) {
-    /* PRODUCTS dropdown wrapper */
+    /* PRODUCTS dropdown wrapper — display:block 让 ::before 箭头用全宽定位 */
     .nav-dropdown > .nav-link {
+        display: block;
         position: relative;
     }
 
@@ -112,8 +113,8 @@
         min-width: auto;
         width: 100%;
         padding: 6px 0 6px 12px;
-        margin: 4px 0 12px 4px;
-        border-radius: 0 6px 6px 0;
+        margin: 8px 0 12px 4px;
+        border-radius: 3px 6px 6px 0;
         transition: none;
     }
 
