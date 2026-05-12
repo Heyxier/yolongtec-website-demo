@@ -98,3 +98,19 @@ title: "{{ title }}"
         </div>
     </div>
 </section>
+
+<script>
+// 修正内容中图片路径：加上 site.baseurl 前缀
+(function() {
+    var base = '{{ site.baseurl }}';
+    if (base) {
+        var imgs = document.querySelectorAll('.article-content img');
+        for (var i = 0; i < imgs.length; i++) {
+            var src = imgs[i].getAttribute('src');
+            if (src && src.startsWith('/') && !src.startsWith(base) && !src.startsWith('http')) {
+                imgs[i].src = base + src;
+            }
+        }
+    }
+})();
+</script>
