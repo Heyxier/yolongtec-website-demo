@@ -23,4 +23,6 @@ status: true
 
 ## 展望未来
 
-Yolongtec 将继续深耕专业电动工具领域，为全球用户提供更优质的产品和服务。<p><img src="/images/cordless-drills.jpg" alt="" style="max-width:100%;border-radius:6px;"></p>
+Yolongtec 将继续深耕专业电动工具领域，为全球用户提供更优质的产品和服务。
+
+<p><img src="/images/cordless-drills.jpg" alt="" style="max-width:100%;border-radius:6px;"></p>
