@@ -1,6 +1,6 @@
 <a href="{{ include.category.slug }}/index.html" class="category-card">
     <div class="category-image">
-        <img src="{{ include.category.image }}" alt="{{ include.category.name }}">
+        <img src="{{ include.category.image | relative_url }}" alt="{{ include.category.name }}">
         <div class="category-overlay">
             <span class="category-count">{{ include.category.count }} Models</span>
         </div>
