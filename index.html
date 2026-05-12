@@ -157,12 +157,40 @@ permalink: /
         .news-card {
             background: rgba(0, 0, 0, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: var(--spacing-lg);
+            overflow: hidden;
             transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
         }
         
         .news-card:hover {
             border-color: var(--accent-500);
+            transform: translateY(-4px);
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-card-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0,104,71,0.3), rgba(0,61,43,0.5));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-500);
+        }
+
+        .news-card-body {
+            padding: var(--spacing-lg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .news-date {
@@ -172,7 +200,6 @@ permalink: /
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: var(--spacing-md);
-            display: block;
         }
         
         .news-card h3 {
@@ -182,6 +209,7 @@ permalink: /
             color: var(--text-primary);
             margin-bottom: var(--spacing-md);
             line-height: 1.4;
+            flex: 1;
         }
         
         .news-card p {
@@ -203,6 +231,7 @@ permalink: /
             display: inline-flex;
             align-items: center;
             gap: var(--spacing-sm);
+            margin-top: auto;
         }
         
         /* CTA Section */
@@ -437,26 +466,36 @@ permalink: /
             </div>
             
             <div class="news-grid">
-                <div class="news-card">
-                    <span class="news-date">APRIL 10, 2026</span>
-                    <h3>YOLONG LAUNCHES NEW 20V MAX BRUSHLESS DRILL SERIES</h3>
-                    <p>The new YL-20V Pro series features advanced brushless motor technology delivering 60Nm of torque with extended runtime.</p>
-                    <a href="#" class="news-link">READ MORE</a>
+                {% assign sorted_articles = site.articles | sort: "publishedAt" | reverse %}
+                {% for article in sorted_articles limit:3 %}
+                <a href="{{ article.url | relative_url }}" class="news-card">
+                    {% if article.coverImage and article.coverImage != "" %}
+                    <img src="{{ article.coverImage | relative_url }}" alt="{{ article.title }}" class="news-card-image" loading="lazy">
+                    {% else %}
+                    <div class="news-card-image-placeholder">📰</div>
+                    {% endif %}
+                    <div class="news-card-body">
+                        {% if article.publishedAt %}
+                        <span class="news-date">{{ article.publishedAt | date: "%B %d, %Y" }}</span>
+                        {% endif %}
+                        <h3>{{ article.title | upcase }}</h3>
+                        {% if article.excerpt and article.excerpt != "" %}
+                        <p>{{ article.excerpt }}</p>
+                        {% endif %}
+                        <span class="news-link">READ MORE</span>
+                    </div>
+                </a>
+                {% else %}
+                <div class="news-card" style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                    <div style="font-size:3rem;margin-bottom:12px;">📰</div>
+                    <h3 style="flex:none;">NEWS COMING SOON</h3>
+                    <p style="flex:none;">Stay tuned for the latest updates and announcements.</p>
                 </div>
-                
-                <div class="news-card">
-                    <span class="news-date">MARCH 25, 2026</span>
-                    <h3>YOLONG EXPANDS SERVICE NETWORK TO 200+ CENTERS</h3>
-                    <p>We're committed to providing faster, more accessible support with our expanding global service network.</p>
-                    <a href="#" class="news-link">READ MORE</a>
-                </div>
-                
-                <div class="news-card">
-                    <span class="news-date">MARCH 15, 2026</span>
-                    <h3>INDUSTRY RECOGNITION: YOLONG WINS INNOVATION AWARD</h3>
-                    <p>Our smart control system receives industry recognition for advancing power tool technology.</p>
-                    <a href="#" class="news-link">READ MORE</a>
-                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="section-cta">
+                <a href="{{ site.baseurl }}/news/index.html" class="btn btn-accent btn-large">VIEW ALL NEWS</a>
             </div>
         </div>
     </section>

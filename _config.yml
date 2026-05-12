@@ -41,7 +41,7 @@ exclude:
 # Keep static files
 keep_files:
   - images
-  - solutions
+  - news
   - about
   - contact
   - innovation
