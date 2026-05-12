@@ -1,12 +1,12 @@
 ---
-title: "Yolongtec 荣获年度最佳电动工具品牌"
-category: "news"
-publishedAt: "2026-04-20"
-excerpt: "在 2026 年电动工具行业峰会上，Yolongtec 凭借创新的产品和卓越的服务，荣获年度最佳电动工具品牌称号。"
-coverImage: "/images/construction-site.jpg"
+title: Yolongtec 荣获年度最佳电动工具品牌
+category: news
+publishedAt: '2026-04-20'
+excerpt: 在 2026 年电动工具行业峰会上，Yolongtec 凭借创新的产品和卓越的服务，荣获年度最佳电动工具品牌称号。
+coverImage: /images/construction-site.jpg
 tags:
-  - "品牌新闻"
-  - "行业荣誉"
+  - 品牌新闻
+  - 行业荣誉
 status: true
 ---
 
@@ -23,4 +23,4 @@ status: true
 
 ## 展望未来
 
-Yolongtec 将继续深耕专业电动工具领域，为全球用户提供更优质的产品和服务。
+Yolongtec 将继续深耕专业电动工具领域，为全球用户提供更优质的产品和服务。<p><img src="/images/impact-drivers.jpg" alt=""></p>
