@@ -27,12 +27,14 @@
                 <div class="footer-column">
                     <h4>PRODUCTS</h4>
                     <ul>
-                        <li><a href="{{ site.baseurl }}/products/drill/">DRILL</a></li>
-                        <li><a href="{{ site.baseurl }}/products/fastening/">FASTENING</a></li>
-                        <li><a href="{{ site.baseurl }}/products/grinder-cutter/">GRINDER & CUTTER</a></li>
-                        <li><a href="{{ site.baseurl }}/products/hammer/">HAMMER</a></li>
-                        <li><a href="{{ site.baseurl }}/products/saw/">SAW</a></li>
-                        <li><a href="{{ site.baseurl }}/products/lighting/">LIGHTING</a></li>
+                        {% assign cat_list = "" | split: "" %}
+                        {% for cat_hash in site.data.categories %}
+                            {% assign cat_list = cat_list | push: cat_hash[1] %}
+                        {% endfor %}
+                        {% assign cat_list = cat_list | sort: "order" %}
+                        {% for cat in cat_list %}
+                        <li><a href="{{ site.baseurl }}/products/{{ cat.slug }}/">{{ cat.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="footer-column">

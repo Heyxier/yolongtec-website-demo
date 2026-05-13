@@ -20,10 +20,14 @@ permalink: /products/
         </div>
 
         <div class="products-categories-grid">
-            {% assign slugs = "drill,fastening,grinder-cutter,hammer,saw,sander-polisher,cleanning,lighting" | split: "," %}
-            {% for slug in slugs %}
-            {% assign cat = site.data.categories[slug] %}{% assign cat_products = site.products | where: "category", slug | where: "status", true %}
-            <a href="{{ "products/" | append: slug | relative_url }}/" class="category-card">
+            {% assign cat_list = "" | split: "" %}
+            {% for cat_hash in site.data.categories %}
+                {% assign cat_list = cat_list | push: cat_hash[1] %}
+            {% endfor %}
+            {% assign cat_list = cat_list | sort: "order" %}
+            {% for cat in cat_list %}
+            {% assign cat_products = site.products | where: "category", cat.slug | where: "status", true %}
+            <a href="{{ "products/" | append: cat.slug | relative_url }}/" class="category-card">
                 <div class="category-image">
                     <img src="{{ cat.image | relative_url }}" alt="{{ cat.name }}">
                     <div class="category-overlay">

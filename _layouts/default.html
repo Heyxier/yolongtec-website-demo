@@ -27,16 +27,16 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="{{ site.baseurl }}/index.html" class="nav-link">HOME</a></li>
                 <li class="nav-dropdown">
-                    <a href="{{ site.baseurl }}/products/index.html" class="nav-link">PRODUCTS</a>
+                    <a href="{{ site.baseurl }}/products/" class="nav-link">PRODUCTS</a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ site.baseurl }}/products/drill/">DRILL</a></li>
-                        <li><a href="{{ site.baseurl }}/products/fastening/">FASTENING</a></li>
-                        <li><a href="{{ site.baseurl }}/products/grinder-cutter/">GRINDER & CUTTER</a></li>
-                        <li><a href="{{ site.baseurl }}/products/hammer/">HAMMER</a></li>
-                        <li><a href="{{ site.baseurl }}/products/saw/">SAW</a></li>
-                        <li><a href="{{ site.baseurl }}/products/sander-polisher/">SANDER & POLISHER</a></li>
-                        <li><a href="{{ site.baseurl }}/products/cleanning/">CLEANNING</a></li>
-                        <li><a href="{{ site.baseurl }}/products/lighting/">LIGHTING</a></li>
+                        {% assign cat_list = "" | split: "" %}
+                        {% for cat_hash in site.data.categories %}
+                            {% assign cat_list = cat_list | push: cat_hash[1] %}
+                        {% endfor %}
+                        {% assign cat_list = cat_list | sort: "order" %}
+                        {% for cat in cat_list %}
+                        <li><a href="{{ site.baseurl }}/products/{{ cat.slug }}/">{{ cat.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
                 <li><a href="{{ site.baseurl }}/news/index.html" class="nav-link">NEWS</a></li>
