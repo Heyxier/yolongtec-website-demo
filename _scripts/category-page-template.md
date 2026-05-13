@@ -16,7 +16,8 @@ permalink: /products/{slug}/
                 <span class="badge-accent"></span>
                 <span>{name}</span>
             </div>
-            <h2 class="section-title">{desc}</h2>
+            <h2 class="section-title">{name}</h2>
+            <p class="section-desc">{desc}</p>
         </div>
 
         <div class="products-grid">

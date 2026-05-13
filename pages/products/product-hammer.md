@@ -16,7 +16,8 @@ permalink: /products/hammer/
                 <span class="badge-accent"></span>
                 <span>HAMMER</span>
             </div>
-            <h2 class="section-title">Rotary hammers, demolition hammers, and chipping hammers</h2>
+            <h2 class="section-title">HAMMER</h2>
+            <p class="section-desc">Rotary hammers, demolition hammers, and chipping hammers</p>
         </div>
 
         <div class="products-grid">

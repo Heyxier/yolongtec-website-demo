@@ -16,7 +16,8 @@ permalink: /products/scissors/
                 <span class="badge-accent"></span>
                 <span>SCISSORS</span>
             </div>
-            <h2 class="section-title">4V electric scissors</h2>
+            <h2 class="section-title">SCISSORS</h2>
+            <p class="section-desc">4V electric scissors</p>
         </div>
 
         <div class="products-grid">

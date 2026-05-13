@@ -16,7 +16,8 @@ permalink: /products/lighting/
                 <span class="badge-accent"></span>
                 <span>LIGHTING</span>
             </div>
-            <h2 class="section-title">Work lights, flashlights, and site lights</h2>
+            <h2 class="section-title">LIGHTING</h2>
+            <p class="section-desc">Work lights, flashlights, and site lights</p>
         </div>
 
         <div class="products-grid">

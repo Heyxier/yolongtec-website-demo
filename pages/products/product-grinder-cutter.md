@@ -16,7 +16,8 @@ permalink: /products/grinder-cutter/
                 <span class="badge-accent"></span>
                 <span>GRINDER & CUTTER</span>
             </div>
-            <h2 class="section-title">Angle grinders, cut-off tools, and rotary tools</h2>
+            <h2 class="section-title">GRINDER & CUTTER</h2>
+            <p class="section-desc">Angle grinders, cut-off tools, and rotary tools</p>
         </div>
 
         <div class="products-grid">
