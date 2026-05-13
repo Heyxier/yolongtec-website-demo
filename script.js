@@ -270,6 +270,8 @@ function initFormSubmit() {
             // 获取表单数据
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
+            // 自动记录来源页面 URL
+            data.source_url = window.location.href;
             
             // 提交按钮状态
             const btn = form.querySelector('button[type="submit"]');
