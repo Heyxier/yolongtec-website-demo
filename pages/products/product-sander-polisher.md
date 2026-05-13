@@ -16,8 +16,7 @@ permalink: /products/sander-polisher/
                 <span class="badge-accent"></span>
                 <span>SANDER & POLISHER</span>
             </div>
-            <h2 class="section-title">SANDERS & POLISHERS</h2>
-            <p class="section-desc">Orbital sanders, polishers, and multi-tools</p>
+            <h2 class="section-title">Orbital sanders, polishers, and multi-tools</h2>
         </div>
 
         <div class="products-grid">

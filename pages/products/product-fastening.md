@@ -16,8 +16,7 @@ permalink: /products/fastening/
                 <span class="badge-accent"></span>
                 <span>FASTENING</span>
             </div>
-            <h2 class="section-title">IMPACT WRENCHES & SCREWDRIVERS</h2>
-            <p class="section-desc">Impact wrenches, ratchets, and screwdrivers</p>
+            <h2 class="section-title">Impact wrenches, ratchets, and screwdrivers</h2>
         </div>
 
         <div class="products-grid">

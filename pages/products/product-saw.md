@@ -16,8 +16,7 @@ permalink: /products/saw/
                 <span class="badge-accent"></span>
                 <span>SAW</span>
             </div>
-            <h2 class="section-title">CIRCULAR SAWS & RECIPROCATING SAWS</h2>
-            <p class="section-desc">Circular saws, reciprocating saws, and jigsaws</p>
+            <h2 class="section-title">Circular saws, reciprocating saws, and jigsaws</h2>
         </div>
 
         <div class="products-grid">

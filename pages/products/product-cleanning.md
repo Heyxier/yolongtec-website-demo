@@ -16,8 +16,7 @@ permalink: /products/cleanning/
                 <span class="badge-accent"></span>
                 <span>CLEANNING</span>
             </div>
-            <h2 class="section-title">BLOWERS & VACUUMS</h2>
-            <p class="section-desc">Blowers, vacuums, and pressure washers</p>
+            <h2 class="section-title">Blowers, vacuums, and pressure washers</h2>
         </div>
 
         <div class="products-grid">
