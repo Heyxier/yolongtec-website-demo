@@ -12,10 +12,6 @@ permalink: /products/scissors/
     </div>
     <div class="container">
         <div class="section-header">
-            <div class="section-badge">
-                <span class="badge-accent"></span>
-                <span>SCISSORS</span>
-            </div>
             <h2 class="section-title">SCISSORS</h2>
             <p class="section-desc">4V electric scissors</p>
         </div>

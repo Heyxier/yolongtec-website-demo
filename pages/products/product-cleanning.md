@@ -12,10 +12,6 @@ permalink: /products/cleanning/
     </div>
     <div class="container">
         <div class="section-header">
-            <div class="section-badge">
-                <span class="badge-accent"></span>
-                <span>CLEANNING</span>
-            </div>
             <h2 class="section-title">CLEANNING</h2>
             <p class="section-desc">Blowers, vacuums, and pressure washers</p>
         </div>

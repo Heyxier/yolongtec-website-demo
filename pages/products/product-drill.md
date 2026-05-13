@@ -12,10 +12,6 @@ permalink: /products/drill/
     </div>
     <div class="container">
         <div class="section-header">
-            <div class="section-badge">
-                <span class="badge-accent"></span>
-                <span>DRILL</span>
-            </div>
             <h2 class="section-title">DRILL</h2>
             <p class="section-desc">12V & 18V cordless drills, impact drivers, and hammer drills</p>
         </div>

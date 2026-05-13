@@ -12,10 +12,6 @@ permalink: /products/saw/
     </div>
     <div class="container">
         <div class="section-header">
-            <div class="section-badge">
-                <span class="badge-accent"></span>
-                <span>SAW</span>
-            </div>
             <h2 class="section-title">SAW</h2>
             <p class="section-desc">Circular saws, reciprocating saws, and jigsaws</p>
         </div>

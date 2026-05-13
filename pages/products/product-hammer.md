@@ -12,10 +12,6 @@ permalink: /products/hammer/
     </div>
     <div class="container">
         <div class="section-header">
-            <div class="section-badge">
-                <span class="badge-accent"></span>
-                <span>HAMMER</span>
-            </div>
             <h2 class="section-title">HAMMER</h2>
             <p class="section-desc">Rotary hammers, demolition hammers, and chipping hammers</p>
         </div>
