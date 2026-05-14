@@ -10,10 +10,29 @@ permalink: /
             padding: var(--spacing-4xl) 0;
         }
         
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .featured-scroll {
+            display: flex;
             gap: var(--spacing-xl);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 12px;
+        }
+        .featured-scroll .featured-card {
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: 300px;
+            scroll-snap-align: start;
+        }
+        .featured-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .featured-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+        .featured-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent-500);
+            border-radius: 3px;
         }
         
         .featured-card {
@@ -277,7 +296,6 @@ permalink: /
         
         /* Responsive */
         @media (max-width: 1024px) {
-            .featured-grid,
             .tech-grid,
             .news-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -285,7 +303,6 @@ permalink: /
         }
         
         @media (max-width: 768px) {
-            .featured-grid,
             .tech-grid,
             .news-grid {
                 grid-template-columns: 1fr;
@@ -380,42 +397,24 @@ permalink: /
                 <p class="section-desc">Discover our latest professional power tools engineered for performance</p>
             </div>
             
-            <div class="featured-grid">
+            <div class="featured-scroll">
+                {% assign featured_products = site.data.featured.featured | where: "type", "product" %}
+                {% for item in featured_products %}
+                    {% assign product = site.products | where: "model", item.model | first %}
+                    {% if product %}
                 <div class="featured-card">
                     <div class="featured-image">
-                        <img src="images/cordless-drills.jpg" alt="Cordless Drills">
+                        <img src="{{ product.image | relative_url }}" alt="{{ product.name }}">
                     </div>
                     <div class="featured-content">
-                        <span class="featured-tag">NEW ARRIVAL</span>
-                        <h3>YL-20V PRO BRUSHLESS DRILL</h3>
-                        <p>20V MAX brushless drill driver with 60Nm torque and 21+1 torque settings for professional applications.</p>
-                        <a href="products/index.html" class="featured-link">LEARN MORE</a>
+                        {% if item.tag %}<span class="featured-tag">{{ item.tag }}</span>{% endif %}
+                        <h3>{{ product.name | upcase }}</h3>
+                        <p>{{ product.model }}{% if product.voltage %} | {{ product.voltage }}{% endif %}{% if product.torque %} | {{ product.torque }}{% endif %}</p>
+                        <a href="{{ product.url | relative_url }}" class="featured-link">LEARN MORE</a>
                     </div>
                 </div>
-                
-                <div class="featured-card">
-                    <div class="featured-image">
-                        <img src="images/impact-drivers.jpg" alt="Impact Drivers">
-                    </div>
-                    <div class="featured-content">
-                        <span class="featured-tag">BEST SELLER</span>
-                        <h3>YL-IMPACT PRO 300NM</h3>
-                        <p>High-torque impact wrench delivering 300Nm of power for demanding automotive and construction tasks.</p>
-                        <a href="products/index.html" class="featured-link">LEARN MORE</a>
-                    </div>
-                </div>
-                
-                <div class="featured-card">
-                    <div class="featured-image">
-                        <img src="images/circular-saws.jpg" alt="Circular Saws">
-                    </div>
-                    <div class="featured-content">
-                        <span class="featured-tag">PROFESSIONAL</span>
-                        <h3>YL-CIRCULAR 7-1/4"</h3>
-                        <p>7-1/4 inch cordless circular saw with 5500RPM for precise cutting in wood, metal, and composite materials.</p>
-                        <a href="products/index.html" class="featured-link">LEARN MORE</a>
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
             
             <div class="section-cta">
