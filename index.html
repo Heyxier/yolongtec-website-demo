@@ -17,6 +17,11 @@ permalink: /
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 12px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .featured-scroll::-webkit-scrollbar {
+            display: none;
         }
         .featured-scroll .featured-card {
             flex: 0 0 calc(33.333% - 16px);
