@@ -45,7 +45,6 @@ keep_files:
   - about
   - contact
   - innovation
-  - support
   - logo-green.png
   - logo-white.png
   - styles.css
