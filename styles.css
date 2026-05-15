@@ -963,8 +963,10 @@ body {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-xl);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .stat-item {
@@ -974,14 +976,14 @@ body {
 
 .stat-number {
     font-family: var(--font-helvetica);
-    font-size: 5rem;
+    font-size: 2.8rem;
     font-weight: var(--font-weight-black);
     display: inline;
 }
 
 .stat-unit {
     font-family: var(--font-helvetica);
-    font-size: 5rem;
+    font-size: 2.8rem;
     font-weight: var(--font-weight-black);
     color: var(--accent-500);
 }
@@ -994,6 +996,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-top: var(--spacing-sm);
+    white-space: nowrap;
 }
 
 /* ========================================
