@@ -27,11 +27,7 @@ permalink: /contact/
                             <div><strong>{{ site.data.contact.info[2].label | default: 'EMAIL' }}</strong><span>{{ site.data.contact.info[2].value | default: 'sales@yolong.com' }}</span></div>
                         </div>
                     </div>
-                    {% if site.data.contact.map.embedUrl %}
-                    <div class="contact-map" style="margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-                        <iframe src="{{ site.data.contact.map.embedUrl }}" width="100%" height="300" style="border:0;display:block;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                    {% endif %}
+                    <div id="contact-map-container" style="margin-top:24px;"></div>
                 </div>
                 <div class="contact-form-wrapper">
                     <form class="contact-form">
@@ -47,3 +43,42 @@ permalink: /contact/
             <div class="section-cta"><a href="../index.html" class="btn btn-accent btn-large">BACK TO HOME</a></div>
         </div>
     </section>
+
+<script>
+// 自动从联系地址生成地图
+(function() {
+    var addressEl = document.querySelector('.contact-item:first-child span');
+    if (!addressEl) return;
+    var address = addressEl.textContent.trim();
+    if (!address) return;
+
+    var container = document.getElementById('contact-map-container');
+    if (!container) return;
+
+    // 显示加载中
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-secondary);font-size:13px;">Loading map...</div>';
+
+    // 通过 Nominatim 地理编码获取坐标
+    var url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1&accept-language=en';
+    fetch(url, { headers: { 'User-Agent': 'YolongContact/1.0' } })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (!data || !data.length) {
+                container.innerHTML = '<a href="https://www.openstreetmap.org/search?q=' + encodeURIComponent(address) + '" target="_blank" style="display:block;text-align:center;padding:20px;color:var(--accent);">📍 View on OpenStreetMap</a>';
+                return;
+            }
+            var lat = parseFloat(data[0].lat);
+            var lon = parseFloat(data[0].lon);
+            var zoom = 15;
+            var bbox = (lon - 0.005) + ',' + (lat - 0.005) + ',' + (lon + 0.005) + ',' + (lat + 0.005);
+            var iframeUrl = 'https://www.openstreetmap.org/export/embed.html?bbox=' + encodeURIComponent(bbox) + '&layer=mapnik&marker=' + lat + ',' + lon + '&lang=en';
+            container.innerHTML =
+                '<div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">' +
+                '<iframe src="' + iframeUrl + '" width="100%" height="300" style="border:0;display:block;" allowfullscreen="" loading="lazy"></iframe>' +
+                '</div>';
+        })
+        .catch(function() {
+            container.innerHTML = '<a href="https://www.openstreetmap.org/search?q=' + encodeURIComponent(address) + '" target="_blank" style="display:block;text-align:center;padding:20px;color:var(--accent);">📍 View on OpenStreetMap</a>';
+        });
+})();
+</script>
