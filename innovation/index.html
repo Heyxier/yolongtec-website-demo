@@ -4,30 +4,209 @@ title: Innovation - Yolong Power Tools
 permalink: /innovation/
 ---
 
-<section class="section innovation-section" id="innovation" style="padding-top: 120px;">
-        <div class="section-bg"><img src="../images/brushless-motor.jpg" alt="Innovation Technology"><div class="section-overlay"></div></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">INNOVATION</h2>
-                <p class="section-desc">Pushing the boundaries of power tool technology</p>
-            </div>
-            <div class="innovation-grid">
-                <div class="innovation-card">
-                    <div class="innovation-icon"><img src="../images/brushless-motor.jpg" alt="Brushless Motor" loading="lazy"></div>
-                    <h3>BRUSHLESS MOTOR TECHNOLOGY</h3>
-                    <p>Our advanced brushless motors deliver 50% more runtime and 2x longer motor life compared to brushed motors. Electronic commutation eliminates friction and heat for maximum efficiency.</p>
-                </div>
-                <div class="innovation-card">
-                    <div class="innovation-icon"><img src="../images/battery-tech.jpg" alt="Battery Technology" loading="lazy"></div>
-                    <h3>LITHIUM-ION BATTERY SYSTEM</h3>
-                    <p>Proprietary 20V MAX battery platform delivers consistent power output with advanced cell management. Fast charging technology gets you back to work in 30 minutes.</p>
-                </div>
-                <div class="innovation-card">
-                    <div class="innovation-icon"><img src="../images/smart-control.jpg" alt="Smart Control" loading="lazy"></div>
-                    <h3>SMART CONTROL SYSTEM</h3>
-                    <p>Integrated electronics monitor and optimize performance in real-time. Automatic torque adjustment prevents overdriving and protects both tool and fastener.</p>
-                </div>
-            </div>
-            <div class="section-cta"><a href="../index.html" class="btn btn-accent btn-large">BACK TO HOME</a></div>
+<style>
+/* Innovation Page Specific Styles */
+.innovation-page {
+    padding: 140px 0 80px;
+    min-height: 100vh;
+}
+.innovation-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.innovation-header h1 {
+    font-family: var(--font-helvetica);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+.innovation-header h1 span {
+    color: var(--accent-500);
+}
+.innovation-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.innovation-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.innovation-block {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+}
+.innovation-block:hover {
+    border-color: var(--accent-500);
+    transform: translateY(-4px);
+}
+.innovation-block-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+.innovation-block-image-placeholder {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, rgba(0,104,71,0.3), rgba(0,61,43,0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--accent-500);
+    font-weight: 900;
+}
+.innovation-block-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.innovation-block-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: block;
+}
+.innovation-block-category {
+    display: inline-block;
+    background: var(--accent-500);
+    color: var(--charcoal);
+    padding: 3px 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    align-self: flex-start;
+}
+.innovation-block-title {
+    font-family: var(--font-helvetica);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    flex: 1;
+}
+.innovation-block-excerpt {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.innovation-block-link {
+    font-family: var(--font-helvetica);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+}
+.innovation-block-link::after {
+    content: '→';
+    transition: transform 0.2s;
+}
+.innovation-block:hover .innovation-block-link::after {
+    transform: translateX(4px);
+}
+.innovation-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-muted);
+}
+.innovation-empty-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+.innovation-empty h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+@media (max-width: 1024px) {
+    .innovation-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .innovation-card-grid { grid-template-columns: 1fr; }
+    .innovation-header h1 { font-size: 2rem; }
+}
+</style>
+
+<section class="innovation-page">
+    <div class="section-bg">
+        <img src="{{ site.baseurl }}/images/brushless-motor.jpg" alt="Innovation">
+        <div class="section-overlay"></div>
+    </div>
+    <div class="container">
+        <div class="innovation-header">
+            <h1><span>INNOVATION</span></h1>
+            <p>Pushing the boundaries of power tool technology</p>
         </div>
-    </section>
+
+        <div class="innovation-card-grid">
+            {% assign innovation_articles = site.articles | where: "placement", "innovation" | sort: "publishedAt" | reverse %}
+            {% if innovation_articles.size > 0 %}
+            {% for article in innovation_articles %}
+            <a href="{{ article.url | relative_url }}" class="innovation-block">
+                {% if article.coverImage and article.coverImage != "" %}
+                <img src="{{ article.coverImage | relative_url }}" alt="{{ article.title }}" class="innovation-block-image" loading="lazy">
+                {% else %}
+                <div class="innovation-block-image-placeholder">💡</div>
+                {% endif %}
+                <div class="innovation-block-body">
+                    {% if article.publishedAt %}
+                    <span class="innovation-block-date">{{ article.publishedAt | date: "%B %d, %Y" }}</span>
+                    {% endif %}
+                    {% if article.category and article.category != "" %}
+                    <span class="innovation-block-category">{{ article.category | upcase }}</span>
+                    {% endif %}
+                    <h3 class="innovation-block-title">{{ article.title }}</h3>
+                    {% if article.excerpt and article.excerpt != "" %}
+                    <p class="innovation-block-excerpt">{{ article.excerpt }}</p>
+                    {% endif %}
+                    <span class="innovation-block-link">READ MORE</span>
+                </div>
+            </a>
+            {% endfor %}
+            {% else %}
+            <div class="innovation-empty">
+                <div class="innovation-empty-icon">💡</div>
+                <h3>Innovation Coming Soon</h3>
+                <p>No innovation articles have been published yet. Check back later.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

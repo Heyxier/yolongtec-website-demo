@@ -178,6 +178,7 @@ permalink: /news/
         <div class="news-card-grid">
             {% assign sorted_articles = site.articles | sort: "publishedAt" | reverse %}
             {% for article in sorted_articles %}
+            {% unless article.placement == "innovation" %}
             <a href="{{ article.url | relative_url }}" class="news-block">
                 {% if article.coverImage and article.coverImage != "" %}
                 <img src="{{ article.coverImage | relative_url }}" alt="{{ article.title }}" class="news-block-image" loading="lazy">
@@ -198,6 +199,7 @@ permalink: /news/
                     <span class="news-block-link">READ MORE</span>
                 </div>
             </a>
+            {% endunless %}
             {% else %}
             <div class="news-empty">
                 <div class="news-empty-icon">📰</div>
