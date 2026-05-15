@@ -1,0 +1,14 @@
+# 联系方式管理 — 通过 CMS 客户端编辑
+title: "CONTACT US"
+description: "Get in touch with our sales team or find a dealer near you"
+bgImage: "../images/dealer-network.jpg"
+info:
+  - label: "HEADQUARTERS"
+    icon: address
+    value: "328 Xinghu Street, Suzhou Industrial Park, China"
+  - label: "PHONE"
+    icon: phone
+    value: "+86 400-888-6688"
+  - label: "EMAIL"
+    icon: email
+    value: "sales@yolong.com"
