@@ -410,35 +410,45 @@ permalink: /
     </section>
 
     <!-- Technology Section -->
-    <section class="technology-section">
+    <section class="news-section">
         <div class="section-bg"><img src="images/brushless-motor.jpg" alt="Technology"><div class="section-overlay"></div></div>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">INNOVATION <span>TECHNOLOGY</span></h2>
+                <h2 class="section-title">TECHNOLOGY <span>INSIGHTS</span></h2>
                 <p class="section-desc">Pushing the boundaries of power tool technology</p>
             </div>
             
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <img src="images/brushless-motor.jpg" alt="Brushless Motor">
-                    <h3>BRUSHLESS MOTOR</h3>
-                    <p>50% more runtime and 2x longer motor life with electronic commutation for maximum efficiency.</p>
-                    <a href="innovation/index.html" class="featured-link">DISCOVER MORE</a>
+            <div class="news-grid">
+                {% assign tech_articles = site.articles | where: "placement", "technology" | sort: "publishedAt" | reverse %}
+                {% for article in tech_articles limit:3 %}
+                <a href="{{ article.url | relative_url }}" class="news-card">
+                    {% if article.coverImage and article.coverImage != "" %}
+                    <img src="{{ article.coverImage | relative_url }}" alt="{{ article.title }}" class="news-card-image" loading="lazy">
+                    {% else %}
+                    <div class="news-card-image-placeholder">🔧</div>
+                    {% endif %}
+                    <div class="news-card-body">
+                        {% if article.publishedAt %}
+                        <span class="news-date">{{ article.publishedAt | date: "%B %d, %Y" }}</span>
+                        {% endif %}
+                        <h3>{{ article.title | upcase }}</h3>
+                        {% if article.excerpt and article.excerpt != "" %}
+                        <p>{{ article.excerpt }}</p>
+                        {% endif %}
+                        <span class="news-link">READ MORE</span>
+                    </div>
+                </a>
+                {% else %}
+                <div class="news-card" style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                    <div style="font-size:3rem;margin-bottom:12px;">🔧</div>
+                    <h3 style="flex:none;">TECHNOLOGY INSIGHTS COMING SOON</h3>
+                    <p style="flex:none;">Discover the latest technology innovations and breakthroughs from Yolong.</p>
                 </div>
-                
-                <div class="tech-item">
-                    <img src="images/battery-tech.jpg" alt="Battery Technology">
-                    <h3>20V MAX BATTERY</h3>
-                    <p>Consistent power output with advanced cell management and 30-minute fast charging.</p>
-                    <a href="innovation/index.html" class="featured-link">DISCOVER MORE</a>
-                </div>
-                
-                <div class="tech-item">
-                    <img src="images/smart-control.jpg" alt="Smart Control">
-                    <h3>SMART CONTROL</h3>
-                    <p>Real-time performance optimization with automatic torque adjustment and overload protection.</p>
-                    <a href="innovation/index.html" class="featured-link">DISCOVER MORE</a>
-                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="section-cta">
+                <a href="{{ site.baseurl }}/technology/index.html" class="btn btn-accent btn-large">VIEW ALL TECHNOLOGY</a>
             </div>
         </div>
     </section>
