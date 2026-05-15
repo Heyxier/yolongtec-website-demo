@@ -223,6 +223,7 @@ permalink: /about/
         }
 </style>
 
+{% assign about = site.data.about %}
 
 <!-- About Hero Section - Fixed -->
     <section class="about-hero">
@@ -231,7 +232,7 @@ permalink: /about/
             <div class="about-hero-content">
                 <div class="about-hero-text">
                     <h2>ABOUT <span>YOLONG</span></h2>
-                    <p>Garden Power Tools &amp; OEM/ODM Solutions Since 2008</p>
+                    <p>{{ about.hero.subtitle }}</p>
                 </div>
             </div>
         </div>
@@ -242,16 +243,15 @@ permalink: /about/
         <div class="container">
             <div class="grid-2" style="align-items: center;">
                 <div>
-                    <img src="../images/cordless-drill-hero.jpg" alt="Yolong Manufacturing" style="border: 2px solid rgba(255, 255, 255, 0.1); width: 100%;">
+                    <img src="{{ about.profile.image | relative_url }}" alt="Yolong Manufacturing" style="border: 2px solid rgba(255, 255, 255, 0.1); width: 100%;">
                 </div>
                 <div>
                     <h3 style="font-family: var(--font-helvetica); font-size: 2rem; font-weight: var(--font-weight-black); color: var(--text-primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--spacing-lg);">COMPANY <span style="color: var(--accent-500);">PROFILE</span></h3>
+                    {% for paragraph in about.profile.paragraphs %}
                     <p style="font-size: 1.05rem; font-weight: var(--font-weight-light); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-lg);">
-                        Founded in 2008 in Suzhou, Yuanlong Technology specializes in garden power tools (cordless, electric, and gasoline powered) as well as electric power tools including sanding machinery. Our product lines cover lawn mowers, grass trimmers, brush cutters, blower vacs, chain saws, rotary sanders, and finishing sanders.
+                        {{ paragraph }}
                     </p>
-                    <p style="font-size: 1.05rem; font-weight: var(--font-weight-light); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-xl);">
-                        With a 13,500 m&sup2; manufacturing facility and over 250 skilled employees, we have an annual production capacity of 1,000,000 pieces. We primarily serve the OEM and ODM markets, exporting to North America, Europe, Australia, and South America &mdash; committed to the principle of <em>&ldquo;great quality, affordable price, win-win cooperation&rdquo;</em>.
-                    </p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -265,26 +265,13 @@ permalink: /about/
                 <p class="section-desc" style="margin: 0 auto var(--spacing-3xl);">The principles that drive everything we do</p>
             </div>
             <div class="values-grid">
+                {% for value in about.values %}
                 <div class="value-item">
-                    <span class="value-number">01</span>
-                    <h3>GREAT QUALITY</h3>
-                    <p>We uphold rigorous quality standards across all our products. From raw material selection to final assembly, every step is controlled to ensure reliable performance that our global partners can trust.</p>
+                    <span class="value-number">{{ value.number }}</span>
+                    <h3>{{ value.title }}</h3>
+                    <p>{{ value.text }}</p>
                 </div>
-                <div class="value-item">
-                    <span class="value-number">02</span>
-                    <h3>AFFORDABLE PRICE</h3>
-                    <p>Through efficient manufacturing and supply chain management, we deliver cost-effective solutions without compromising on quality &mdash; making professional-grade garden tools accessible to markets worldwide.</p>
-                </div>
-                <div class="value-item">
-                    <span class="value-number">03</span>
-                    <h3>WIN-WIN COOPERATION</h3>
-                    <p>We believe in building long-term partnerships based on mutual benefit. Our OEM/ODM services are designed to help our clients grow their business with flexible customization and reliable support.</p>
-                </div>
-                <div class="value-item">
-                    <span class="value-number">04</span>
-                    <h3>CONTINUOUS INNOVATION</h3>
-                    <p>With over 14 years of experience in garden and power tools, our team continuously improves product design, adopts new technologies, and optimizes production processes to stay ahead of market demands.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -297,26 +284,13 @@ permalink: /about/
                 <p class="section-desc" style="margin: 0 auto var(--spacing-3xl);">Serving professional users worldwide</p>
             </div>
             <div class="global-grid">
+                {% for item in about.global %}
                 <div class="global-item">
-                    <span class="global-number">13,500</span>
-                    <h3>M&sup2; Facility</h3>
-                    <p>Modern manufacturing plant located at No.17 Chengtai Road, Taiping Street, Xiangcheng District, Suzhou &mdash; equipped for efficient production of garden and power tools.</p>
+                    <span class="global-number">{{ item.figure }}</span>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.text }}</p>
                 </div>
-                <div class="global-item">
-                    <span class="global-number">1M</span>
-                    <h3>Annual Capacity</h3>
-                    <p>With an annual production capacity of 1,000,000 pieces, we reliably serve OEM and ODM clients across four continents with consistent quality and timely delivery.</p>
-                </div>
-                <div class="global-item">
-                    <span class="global-number">250+</span>
-                    <h3>Skilled Employees</h3>
-                    <p>A dedicated team of over 250 professionals working together to engineer, manufacture, and deliver high-quality garden power tools to global markets.</p>
-                </div>
-                <div class="global-item">
-                    <span class="global-number">4</span>
-                    <h3>Continents Served</h3>
-                    <p>Our products reach customers in North America, Europe, Australia, and South America, building lasting partnerships through great quality and win-win cooperation.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -325,8 +299,8 @@ permalink: /about/
     <section class="section cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">READY TO <span>PARTNER</span> WITH US?</h2>
-                <p class="cta-desc">Contact our sales team to learn more about our products, distribution opportunities, and how Yolong can support your business.</p>
+                <h2 class="cta-title">{{ about.cta.title }}</h2>
+                <p class="cta-desc">{{ about.cta.description }}</p>
                 <a href="../contact/index.html" class="btn btn-accent btn-large">CONTACT US</a>
             </div>
         </div>
