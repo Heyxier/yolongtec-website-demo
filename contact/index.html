@@ -27,6 +27,11 @@ permalink: /contact/
                             <div><strong>{{ site.data.contact.info[2].label | default: 'EMAIL' }}</strong><span>{{ site.data.contact.info[2].value | default: 'sales@yolong.com' }}</span></div>
                         </div>
                     </div>
+                    {% if site.data.contact.map.embedUrl %}
+                    <div class="contact-map" style="margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
+                        <iframe src="{{ site.data.contact.map.embedUrl }}" width="100%" height="300" style="border:0;display:block;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="contact-form-wrapper">
                     <form class="contact-form">
