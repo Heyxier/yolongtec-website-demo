@@ -16,13 +16,9 @@ status: true
 ---
 <h1>
 
-<p><img src="/images/construction-site.jpg" alt="" style="max-width:100%;border-radius:6px;">
+<p><img src="/images/construction-site.jpg" alt="" style="max-width:100%;border-radius:6px;"><span style="color: var(--text-primary); font-family: var(--font);">Yolongtec Wins the "Best Power Tool Brand of the Year"</span>
 
-</p><br>
-
-</h1>
-
-<h1>Yolongtec Wins the "Best Power Tool Brand of the Year"
+</p>
 
 </h1>
 
@@ -30,10 +26,10 @@ status: true
 
 </div>
 
-<h1>Award
+<h2>Award
 Reasons for Winning the Award:
 
-</h1>
+</h2>
 
 <div><ol><li>Technological Innovation: The brushless motor series launched in 2025 has led the industry's technological upgrades.
 
@@ -43,15 +39,15 @@ Reasons for Winning the Award:
 
 </div>
 
-<div><span style="color: var(--text-primary); font-size: 22px; font-weight: 700; font-family: var(--font);">Looking Ahead:</span>
+<h2><span style="color: var(--text-primary); font-size: 22px; font-weight: 700; font-family: var(--font);">Looking Ahead:</span>
 
-</div>
+</h2>
 
 <div>Yolongtec will continue to deepen its expertise in the professional power tool sector, striving to provide higher quality products and services to users worldwide.
 
 </div>
 
-<div><p><img src="/images/impact-drivers.jpg" alt="" style="max-width:100%;border-radius:6px;">
+<div><p><img src="/images/cordless-drills.jpg" alt="" style="max-width:100%;border-radius:6px;">
 
 </p><br>
 
