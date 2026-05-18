@@ -1,7 +1,7 @@
 ---
 layout: default
-title: News & Updates - Yolong Power Tools
-permalink: /news/
+title: 新闻动态 - 园龙电动工具
+permalink: /zh/news/
 ---
 
 <style>
@@ -166,19 +166,18 @@ permalink: /news/
 
 <section class="news-page">
     <div class="section-bg">
-        <img src="{{ site.baseurl }}/images/construction-site.jpg" alt="News">
+        <img src="{{ site.baseurl }}/images/construction-site.jpg" alt="新闻动态">
         <div class="section-overlay"></div>
     </div>
     <div class="container">
         <div class="news-page-header">
-            <h1>NEWS & <span>UPDATES</span></h1>
-            <p>Stay informed about our latest developments and industry insights</p>
+            <h1>新闻<span>动态</span></h1>
+            <p>了解园龙科技的最新发展和行业洞察</p>
         </div>
 
         <div class="news-card-grid">
-            {% assign sorted_articles = site.articles | where_exp: "a", "a.lang != 'zh'" | sort: "publishedAt" | reverse %}
+            {% assign sorted_articles = site.articles | where_exp: "a", "a.lang == 'zh'" | where_exp: "a", "a.placement != 'technology'" | sort: "publishedAt" | reverse %}
             {% for article in sorted_articles %}
-            {% unless article.placement == "technology" %}
             <a href="{{ article.url | relative_url }}" class="news-block">
                 {% if article.coverImage and article.coverImage != "" %}
                 <img src="{{ article.coverImage | relative_url }}" alt="{{ article.title }}" class="news-block-image" loading="lazy">
@@ -187,7 +186,7 @@ permalink: /news/
                 {% endif %}
                 <div class="news-block-body">
                     {% if article.publishedAt %}
-                    <span class="news-block-date">{{ article.publishedAt | date: "%B %d, %Y" }}</span>
+                    <span class="news-block-date">{{ article.publishedAt | date: "%Y-%m-%d" }}</span>
                     {% endif %}
                     {% if article.category and article.category != "" %}
                     <span class="news-block-category">{{ article.category | upcase }}</span>
@@ -196,18 +195,16 @@ permalink: /news/
                     {% if article.excerpt and article.excerpt != "" %}
                     <p class="news-block-excerpt">{{ article.excerpt }}</p>
                     {% endif %}
-                    <span class="news-block-link">READ MORE</span>
+                    <span class="news-block-link">阅读全文</span>
                 </div>
             </a>
-            {% endunless %}
             {% else %}
             <div class="news-empty">
                 <div class="news-empty-icon">📰</div>
                 <h3>新闻快来了</h3>
-                <p>还没有发布任何新闻文章，请稍后再来看看。</p>
+                <p>还没有发布任何中文新闻文章，请稍后再来看看。</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
-

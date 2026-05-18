@@ -41,6 +41,7 @@ exclude:
 # Keep static files
 keep_files:
   - images
+  - zh
   - news
   - about
   - contact
