@@ -16,7 +16,7 @@ status: true
 ---
 <h1>
 
-<p><img src="/images/construction-site.jpg" alt="" style="max-width:100%;border-radius:6px;"><span style="color: var(--text-primary); font-family: var(--font);">Yolongtec Wins the "Best Power Tool Brand of the Year"</span>
+<p><span style="color: var(--text-primary); font-family: var(--font);">Yolongtec Wins the "Best Power Tool Brand of the Year"</span>
 
 </p>
 
